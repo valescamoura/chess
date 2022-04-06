@@ -25,6 +25,7 @@ jobs:
         pip install -r requirements.txt
     - name: Build server
       run: |
+        chmod +x ./build.sh
         ./build.sh
     - name: Run Tests
       run: |
