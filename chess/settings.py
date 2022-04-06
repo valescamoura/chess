@@ -22,10 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_66$!^v#dvl)%bk7yu3y&-^t$f&0chuu5yua6+_yx2r!bi0j^&'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-_66$!^v#dvl)_bk7yu3y&-^t$f&0chuu5yua6+_yx2r!bi0j^&')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'chess-es2-20221.herokuapp.com']
 
@@ -128,3 +128,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Ative o Django-Heroku.
 django_heroku.settings(locals())
+    
