@@ -14,7 +14,11 @@ _Execute os comandos a partir do diretório base._
 
 1. Crie o ambiente virtual Python através do comando ``python -m venv venv``.
 
-2. Ative o ambiente virtual: ``venv\Scripts\activate``.
+2. Ative o ambiente virtual: 
+    
+    2.1 Windows: ``venv\Scripts\activate``.
+    
+    2.2 Linux/Mac: ``source venv\bin\activate``.
 
 3. Instale as dependências: ``pip install -r requirements.txt``.
 
