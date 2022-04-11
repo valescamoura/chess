@@ -12,9 +12,11 @@ Deploy já disponível no [Heroku](https://chess-es2-20221.herokuapp.com/).
 
 _Execute os comandos a partir do diretório base._
 
-1. Crie o ambiente virtual Python através do comando ``python -m venv venv``.
+1. Crie o ambiente virtual Python através do comando: ``python -m venv venv``.
 
-2. Ative o ambiente virtual: ``venv\Scripts\activate``.
+2. Ative o ambiente virtual:<br/>
+    Windows: ``./venv/Scripts/activate``.<br />
+    Linux/Mac: ``source ./venv/bin/activate``.
 
 3. Instale as dependências: ``pip install -r requirements.txt``.
 
