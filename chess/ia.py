@@ -13,7 +13,7 @@ def rand(chess_board,team="black"):
 
   moves = []
   while len(moves) == 0:
-    if chess_board.isKingInCheck(team) or len(team_pieces) == 0:
+    if len(team_pieces) == 0:
       return None
 
     tile = choice(team_pieces)
