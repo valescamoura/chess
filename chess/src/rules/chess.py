@@ -545,7 +545,7 @@ class Chess:
                         aboveOtherTile = Chess.chessNotation(otherTile, -1, 0)
                         belowOtherTile = Chess.chessNotation(otherTile,  1, 0)
                         if belowOtherTile is not None and self.pieces.get(aboveOtherTile, None) == {'team': 'white', 'type': 'pawn', 'moved': True}:
-                            if len(self.record > 0) and len(self.record[-1]) > 0 and self.record[-1][-1] == f'move {belowOtherTile} {aboveOtherTile}':
+                            if len(self.record) > 0 and len(self.record[-1]) > 0 and self.record[-1][-1] == f'move {belowOtherTile} {aboveOtherTile}':
                                 # En passant
                                 sequences.append([f'move {aboveOtherTile} {otherTile}', f'move {tile} {otherTile}'])
 
@@ -596,7 +596,7 @@ class Chess:
                         aboveOtherTile = Chess.chessNotation(otherTile, -1, 0)
                         belowOtherTile = Chess.chessNotation(otherTile,  1, 0)
                         if aboveOtherTile is not None and self.pieces.get(belowOtherTile) == {'team': 'black', 'type': 'pawn', 'moved': True}:
-                            if len(self.record > 0) and len(self.record[-1]) > 0 and self.record[-1][-1] == f'move {aboveOtherTile} {belowOtherTile}':
+                            if len(self.record) > 0 and len(self.record[-1]) > 0 and self.record[-1][-1] == f'move {aboveOtherTile} {belowOtherTile}':
                                 # En passant
                                 sequences.append([f'move {belowOtherTile} {otherTile}', f'move {tile} {otherTile}'])
 
@@ -681,6 +681,7 @@ class Chess:
             i = 1
             otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
             while otherTile is not None:
+                i += 1
                 otherPiece = self.pieces.get(otherTile, None)
                 if otherPiece is None:
                     sequences.append([f'move {tile} {otherTile}'])
@@ -708,6 +709,7 @@ class Chess:
             i = 1
             otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
             while otherTile is not None:
+                i += 1
                 otherPiece = self.pieces.get(otherTile, None)
                 if otherPiece is None:
                     sequences.append([f'move {tile} {otherTile}'])
