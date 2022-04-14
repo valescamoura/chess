@@ -1,5 +1,3 @@
-from cgi import test
-from turtle import back
 from multipledispatch import dispatch
 import copy
 import json
@@ -39,9 +37,10 @@ class Chess:
     ]
     '''Ordered pairs of file and rank (board "squares").'''
 
-    def __init__(self, pieces={}, record=[]):
+    def __init__(self, pieces, record, points):
         self.pieces = pieces
         self.record = record
+        self.points = points
 
     def initial():
         pieces = {
@@ -83,8 +82,9 @@ class Chess:
         }
 
         record = []
+        points = 0
 
-        return Chess(pieces=pieces, record=record)
+        return Chess(pieces=pieces, record=record, points=points)
 
     def toJson(self, indent=None, separators=(',', ':')):
         dictionary = {'pieces': self.pieces, 'record': self.record}
@@ -214,6 +214,8 @@ class Chess:
         swap <src> <dst>
         '''
         backup = self.deepcopy()
+        scores = {'pawn': 10, 'rook': 50, 'knight': 30, 'bishop': 30, 'queen': 90, 'king': 900}
+
         try:
             if 'del' in command:
                 _, tile = command.split(' ')
@@ -222,6 +224,12 @@ class Chess:
                     raise Exception(f'Invalid chess tile: "{tile}"')
 
                 if tile in self.pieces:
+                    # A piece gets deleted
+                    if self.pieces[tile]['team'] == 'black':
+                        self.points -= scores[self.pieces[tile]['type']]
+                    else:
+                        self.points += scores[self.pieces[tile]['type']]
+
                     del self.pieces[tile]
 
             elif 'set' in command:
@@ -236,7 +244,20 @@ class Chess:
                 if type not in Chess.types:
                     raise Exception(f'Invalid piece type: "{type}"')
 
+                if tile in self.pieces:
+                    # A piece gets overwritten
+                    if self.pieces[tile]['team'] == 'black':
+                        self.points -= scores[self.pieces[tile]['type']]
+                    else:
+                        self.points += scores[self.pieces[tile]['type']]
+
+
                 self.pieces[tile] = {'team': team, 'type': type, 'moved': (moved.lower() == 'true')}
+                if self.pieces[tile]['team'] == 'black':
+                    self.points += scores[self.pieces[tile]['type']]
+                else:
+                    self.points -= scores[self.pieces[tile]['type']]
+
 
             elif 'move' in command:
                 _, src, dst = command.split(' ')
@@ -248,6 +269,13 @@ class Chess:
                     raise Exception(f'Invalid chess tile: "{dst}"')
 
                 if src in self.pieces:
+                    if dst in self.pieces:
+                        # A piece gets overwritten
+                        if self.pieces[dst]['team'] == 'black':
+                            self.points -= scores[self.pieces[dst]['type']]
+                        else:
+                            self.points += scores[self.pieces[dst]['type']]
+
                     self.pieces[dst] = self.pieces[src]
                     self.pieces[dst]['moved'] = True
                     del self.pieces[src]

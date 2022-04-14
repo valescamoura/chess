@@ -38,6 +38,9 @@ while command != 'exit':
             for sequence in chess.record:
                 print(sequence)
 
+        elif 'points' in command:
+            print(f'Points: {chess.points}')
+                
 
     except Exception as e:
         print(f'Exception thrown: {e}')
