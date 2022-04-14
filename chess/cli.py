@@ -1,4 +1,5 @@
 from chess import *
+from ia import *
 
 chess = Chess.initial()
 
@@ -22,6 +23,12 @@ while command != 'exit':
             sequence = [step.strip() for step in command.replace('execute', '').strip().split(',')]
             print(f'Executing sequence: {sequence}')
             chess.execute(sequence)
+
+            sequence = rand(chess)
+            if sequence:
+                print(f'Black Executing sequence: {sequence}')
+                chess.execute(sequence)
+
 
         elif 'pieces' in command:
             for tile in chess.pieces:
