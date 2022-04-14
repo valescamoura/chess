@@ -25,8 +25,9 @@ while command != 'exit':
             chess.execute(sequence)
 
             sequence = rand(chess)
-            print(f'Black Executing sequence: {sequence}')
-            chess.execute(sequence)
+            if sequence:
+                print(f'Black Executing sequence: {sequence}')
+                chess.execute(sequence)
 
 
         elif 'pieces' in command:
