@@ -1,8 +1,10 @@
 body {
-    background-image: url("images/background.jpg");
-    background-size:cover;
-    background-position: 30% 45%;
-    margin: 0;    
+    background-image: url("images/background.jpg"); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;   
 }
 
 .container-style {
@@ -37,7 +39,7 @@ body {
 }
 
 .title-style{
-    padding-top: 50px;
+    padding-top: 100px;
     margin-top: 0;
     margin-bottom: 10px;
     color: #00004A;
