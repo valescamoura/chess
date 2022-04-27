@@ -1,7 +1,7 @@
-from rules.chess import *
-from IA.ia import *
+from board import *
+from ia import *
 
-chess = Chess.initial()
+chess = Board.initial()
 
 command = ''
 while command != 'exit':
@@ -11,7 +11,7 @@ while command != 'exit':
         command = input()
 
         if 'reset' in command:
-            chess = Chess.initial()
+            chess = ChessBoard.initial()
 
         elif 'sequences' in command:
             _, tile = command.split(' ')
