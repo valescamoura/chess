@@ -11,7 +11,7 @@ while command != 'exit':
         command = input()
 
         if 'reset' in command:
-            chess = ChessBoard.initial()
+            chess = Board.initial()
 
         elif 'sequences' in command:
             _, tile = command.split(' ')
