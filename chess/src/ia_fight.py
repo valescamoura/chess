@@ -25,7 +25,7 @@ while not winner:
             winner = 'White' 
         points = chess.points
 
-        sequence = rand(chess)
+        sequence = min_max(chess)
         if sequence:
             black_can_move = True
             print(f'Black Executing sequence: {sequence}')
