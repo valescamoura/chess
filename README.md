@@ -1,12 +1,12 @@
 # Chess
 
-Jogo de xadrez com interface web realizado como trabalho final da disciplina de Engenharia de Software II. 
+Jogo de xadrez com interface web realizado como trabalho final da disciplina de Engenharia de Software II (2022/1). 
 
 Deploy já disponível no [Heroku](https://chess-es2-20221.herokuapp.com/).
 
 ## Requisitos
 
-1. Instale Python 3.x.
+1. Instale ``Python 3.x``.
 
 ## Dev setup
 
@@ -32,3 +32,5 @@ _Execute os comandos a partir do diretório base._
 
 4. Ao instalar uma nova biblioteca, não se esqueça de adicioná-la aos requirements. 
     - Hint: ``pip freeze > requirements.txt``
+
+5. Para atualizar localmente as branchs já deletadas no repositório utilize ``git pull && git remote update origin --prune``.

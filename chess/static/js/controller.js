@@ -3,7 +3,7 @@ function callEasyGame(){
 }
 
 function callMediumGame(){
-    //TO DO: Chamar jogo com IA min-max?
+    //TO DO: Chamar jogo com IA min-max
 
 }
 
