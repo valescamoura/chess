@@ -1,7 +1,7 @@
-from rules.chess import *
-from IA.ia import *
+from board import *
+from ia import *
 
-chess = Chess.initial()
+chess = Board.initial()
 
 black_can_move = True
 white_can_move = True
@@ -12,9 +12,6 @@ winner = None
 while not winner:
     try:
         print('\n' + chess.toString() + '\n')
-
-
-
 
         sequence = rand(chess,"white")
         if sequence:

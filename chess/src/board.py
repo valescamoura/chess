@@ -3,9 +3,9 @@ import copy
 import json
 
 
-class Chess:
+class Board:
     '''
-    Chess implementation.
+    Chess board implementation.
     Keeps a record of all changes to the board, but not of whose turn to play it is (therefore does not detect stalemates reliably).
     '''
 
@@ -84,7 +84,7 @@ class Chess:
         record = []
         points = 0
 
-        return Chess(pieces=pieces, record=record, points=points)
+        return Board(pieces=pieces, record=record, points=points)
 
     def toJson(self, indent=None, separators=(',', ':')):
         dictionary = {'pieces': self.pieces, 'record': self.record}
@@ -92,7 +92,7 @@ class Chess:
 
     def fromJson(string):
         dictionary = json.loads(dictionary)
-        return Chess(pieces=dictionary['pieces'], record=dictionary['record'])
+        return Board(pieces=dictionary['pieces'], record=dictionary['record'])
 
     def copy(self):
         return copy.copy(self)
@@ -101,12 +101,12 @@ class Chess:
         return copy.deepcopy(self)
 
     def toString(self):
-        output = '  ' + ''.join(Chess.files) + '\n'
+        output = '  ' + ''.join(Board.files) + '\n'
 
         for rank in range(8, 0, -1):
 
             output += f'{rank} '
-            for file in Chess.files:
+            for file in Board.files:
                 tile = f'{file}{rank}'
 
                 character = ' '
@@ -122,7 +122,7 @@ class Chess:
 
             output += f' {rank}\n'
 
-        output += '  ' + ''.join(Chess.files)
+        output += '  ' + ''.join(Board.files)
 
         return output
 
@@ -137,9 +137,9 @@ class Chess:
 
         chessNotation('a8', 0, -1) -> None
         '''
-        row, col = Chess.arrayNotation(tile)
+        row, col = Board.arrayNotation(tile)
         if row is not None and col is not None:
-            return Chess.chessNotation(row + dy, col + dx)
+            return Board.chessNotation(row + dy, col + dx)
 
         return None
 
@@ -154,8 +154,8 @@ class Chess:
 
         chessNotation(0, -1) -> None, None
         '''
-        if -1 < row < len(Chess.ranks) and -1 < col < len(Chess.files):
-            return f'{Chess.files[col]}{Chess.ranks[row]}'
+        if -1 < row < len(Board.ranks) and -1 < col < len(Board.files):
+            return f'{Board.files[col]}{Board.ranks[row]}'
 
         return None
 
@@ -171,8 +171,8 @@ class Chess:
         '''
         file = tile[0]
         rank = tile[1]
-        if file in Chess.files and rank in Chess.ranks:
-            return Chess.ranks.index(rank), Chess.files.index(file)
+        if file in Board.files and rank in Board.ranks:
+            return Board.ranks.index(rank), Board.files.index(file)
 
         return None, None
 
@@ -220,7 +220,7 @@ class Chess:
             if 'del' in command:
                 _, tile = command.split(' ')
 
-                if tile not in Chess.tiles:
+                if tile not in Board.tiles:
                     raise Exception(f'Invalid chess tile: "{tile}"')
 
                 if tile in self.pieces:
@@ -235,13 +235,13 @@ class Chess:
             elif 'set' in command:
                 _, tile, team, type, moved = command.split(' ')
 
-                if tile not in Chess.tiles:
+                if tile not in Board.tiles:
                     raise Exception(f'Invalid chess tile: "{tile}"')
 
-                if team not in Chess.teams:
+                if team not in Board.teams:
                     raise Exception(f'Invalid chess team: "{team}"')
 
-                if type not in Chess.types:
+                if type not in Board.types:
                     raise Exception(f'Invalid piece type: "{type}"')
 
                 if tile in self.pieces:
@@ -251,21 +251,19 @@ class Chess:
                     else:
                         self.points += scores[self.pieces[tile]['type']]
 
-
                 self.pieces[tile] = {'team': team, 'type': type, 'moved': (moved.lower() == 'true')}
                 if self.pieces[tile]['team'] == 'black':
                     self.points += scores[self.pieces[tile]['type']]
                 else:
                     self.points -= scores[self.pieces[tile]['type']]
 
-
             elif 'move' in command:
                 _, src, dst = command.split(' ')
 
-                if src not in Chess.tiles:
+                if src not in Board.tiles:
                     raise Exception(f'Invalid chess tile: "{src}"')
 
-                if dst not in Chess.tiles:
+                if dst not in Board.tiles:
                     raise Exception(f'Invalid chess tile: "{dst}"')
 
                 if src in self.pieces:
@@ -283,10 +281,10 @@ class Chess:
             elif 'swap' in command:
                 _, src, dst = command.split(' ')
 
-                if src not in Chess.tiles:
+                if src not in Board.tiles:
                     raise Exception(f'Invalid chess tile: "{src}"')
 
-                if dst not in Chess.tiles:
+                if dst not in Board.tiles:
                     raise Exception(f'Invalid chess tile: "{dst}"')
 
                 if src in self.pieces and dst in self.pieces:
@@ -338,47 +336,47 @@ class Chess:
 
         # Pawn
         if team == 'black':
-            piece = self.pieces.get(Chess.chessNotation(king, 1, -1), None)
+            piece = self.pieces.get(Board.chessNotation(king, 1, -1), None)
             if piece and piece['team'] == 'white' and piece['type'] == 'pawn':
                 return True
 
-            piece = self.pieces.get(Chess.chessNotation(king, 1,  1), None)
+            piece = self.pieces.get(Board.chessNotation(king, 1,  1), None)
             if piece and piece['team'] == 'white' and piece['type'] == 'pawn':
                 return True
 
         if team == 'white':
-            piece = self.pieces.get(Chess.chessNotation(king, -1, -1), None)
+            piece = self.pieces.get(Board.chessNotation(king, -1, -1), None)
             if piece and piece['team'] == 'black' and piece['type'] == 'pawn':
                 return True
 
-            piece = self.pieces.get(Chess.chessNotation(king, -1,  1), None)
+            piece = self.pieces.get(Board.chessNotation(king, -1,  1), None)
             if piece and piece['team'] == 'black' and piece['type'] == 'pawn':
                 return True
 
         # Straights: Rook or Queen
         # Left
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king, 0, -i), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king, 0, -i), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
             break
 
         # Right
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king, 0, i), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king, 0, i), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
             break
 
         # Top
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king, -i, 0), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king, -i, 0), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
             break
 
         # Bottom
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king, i, 0), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king, i, 0), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
@@ -386,28 +384,28 @@ class Chess:
 
         # Diagonals: Bishop or Queen
         # Top left
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king, -i, -i), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king, -i, -i), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
             break
 
         # Top right
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king, -i, i), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king, -i, i), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
             break
 
         # Bottom right
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king,  i, i), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king,  i, i), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
             break
 
         # Bottom left
-        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Chess.chessNotation(king,  i, -i), None)) is not None]
+        pieces = [piece for i in range(1, 8) if (piece := self.pieces.get(Board.chessNotation(king,  i, -i), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
@@ -415,14 +413,14 @@ class Chess:
 
         # Knights
         deltas = [(-1, -2), (-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2)]
-        pieces = [piece for delta in deltas if (piece := self.pieces.get(Chess.chessNotation(king, delta[0], delta[1]), None)) is not None]
+        pieces = [piece for delta in deltas if (piece := self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and piece['type'] == 'knight':
                 return True
 
         # Kings
         deltas = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
-        pieces = [piece for delta in deltas if (piece := self.pieces.get(Chess.chessNotation(king, delta[0], delta[1]), None)) is not None]
+        pieces = [piece for delta in deltas if (piece := self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None)) is not None]
         for piece in pieces:
             if piece['team'] != team and piece['type'] == 'king':
                 return True
@@ -521,8 +519,8 @@ class Chess:
 
         sequences = []
 
-        oneBelow = Chess.chessNotation(tile, 1, 0)
-        twoBelow = Chess.chessNotation(tile, 2, 0)
+        oneBelow = Board.chessNotation(tile, 1, 0)
+        twoBelow = Board.chessNotation(tile, 2, 0)
 
         if oneBelow is not None and self.pieces.get(oneBelow, None) is None:
             # Regular move
@@ -533,7 +531,7 @@ class Chess:
                 sequences.append([f'move {tile} {twoBelow}'])
 
         for delta in [(1, -1), (1, 1)]:
-            otherTile = Chess.chessNotation(tile, delta[0], delta[1])
+            otherTile = Board.chessNotation(tile, delta[0], delta[1])
             if otherTile is not None:
                 otherPiece = self.pieces.get(otherTile, None)
                 if otherPiece is not None:
@@ -542,23 +540,27 @@ class Chess:
                         sequences.append([f'move {tile} {otherTile}'])
                 else:
                     if testEnPassant:
-                        aboveOtherTile = Chess.chessNotation(otherTile, -1, 0)
-                        belowOtherTile = Chess.chessNotation(otherTile,  1, 0)
+                        aboveOtherTile = Board.chessNotation(otherTile, -1, 0)
+                        belowOtherTile = Board.chessNotation(otherTile,  1, 0)
                         if belowOtherTile is not None and self.pieces.get(aboveOtherTile, None) == {'team': 'white', 'type': 'pawn', 'moved': True}:
                             if len(self.record) > 0 and len(self.record[-1]) > 0 and self.record[-1][-1] == f'move {belowOtherTile} {aboveOtherTile}':
                                 # En passant
                                 sequences.append([f'move {aboveOtherTile} {otherTile}', f'move {tile} {otherTile}'])
 
         if testPromotion:
+            new_sequences = []
             for sequence in sequences:
                 _, src, dst = sequence[-1].split(' ')
                 if src == tile and dst[1] == '1':
-                    # Pawn promotion
-                    sequences.remove(sequence)
-                    sequences.append(sequence + f'set {dst} black rook true')
-                    sequences.append(sequence + f'set {dst} black knight true')
-                    sequences.append(sequence + f'set {dst} black bishop true')
-                    sequences.append(sequence + f'set {dst} black queen true')
+                    # Sequence results in pawn across the board
+                    new_sequences.append(sequence + [f'set {dst} black rook true'])
+                    new_sequences.append(sequence + [f'set {dst} black knight true'])
+                    new_sequences.append(sequence + [f'set {dst} black bishop true'])
+                    new_sequences.append(sequence + [f'set {dst} black queen true'])
+                else:
+                    # Sequence does not result in pawn across the board
+                    new_sequences.append(sequence)
+            return new_sequences
 
         return sequences
 
@@ -572,8 +574,8 @@ class Chess:
 
         sequences = []
 
-        oneAbove = Chess.chessNotation(tile, -1, 0)
-        twoAbove = Chess.chessNotation(tile, -2, 0)
+        oneAbove = Board.chessNotation(tile, -1, 0)
+        twoAbove = Board.chessNotation(tile, -2, 0)
 
         if oneAbove is not None and self.pieces.get(oneAbove, None) is None:
             # Regular move
@@ -584,7 +586,7 @@ class Chess:
                 sequences.append([f'move {tile} {twoAbove}'])
 
         for delta in [(-1, -1), (-1, 1)]:
-            otherTile = Chess.chessNotation(tile, delta[0], delta[1])
+            otherTile = Board.chessNotation(tile, delta[0], delta[1])
             if otherTile is not None:
                 otherPiece = self.pieces.get(otherTile, None)
                 if otherPiece is not None:
@@ -593,23 +595,27 @@ class Chess:
                         sequences.append([f'move {tile} {otherTile}'])
                 else:
                     if testEnPassant:
-                        aboveOtherTile = Chess.chessNotation(otherTile, -1, 0)
-                        belowOtherTile = Chess.chessNotation(otherTile,  1, 0)
+                        aboveOtherTile = Board.chessNotation(otherTile, -1, 0)
+                        belowOtherTile = Board.chessNotation(otherTile,  1, 0)
                         if aboveOtherTile is not None and self.pieces.get(belowOtherTile) == {'team': 'black', 'type': 'pawn', 'moved': True}:
                             if len(self.record) > 0 and len(self.record[-1]) > 0 and self.record[-1][-1] == f'move {aboveOtherTile} {belowOtherTile}':
                                 # En passant
                                 sequences.append([f'move {belowOtherTile} {otherTile}', f'move {tile} {otherTile}'])
 
         if testPromotion:
+            new_sequences = []
             for sequence in sequences:
                 _, src, dst = sequence[-1].split(' ')
                 if src == tile and dst[1] == '1':
-                    # Pawn promotion
-                    sequences.remove(sequence)
-                    sequences.append(sequence + f'set {dst} white rook true')
-                    sequences.append(sequence + f'set {dst} white knight true')
-                    sequences.append(sequence + f'set {dst} white bishop true')
-                    sequences.append(sequence + f'set {dst} white queen true')
+                    # Sequence results in pawn across the board
+                    new_sequences.append(sequence + [f'set {dst} white rook true'])
+                    new_sequences.append(sequence + [f'set {dst} white knight true'])
+                    new_sequences.append(sequence + [f'set {dst} white bishop true'])
+                    new_sequences.append(sequence + [f'set {dst} white queen true'])
+                else:
+                    # Sequence does not result in pawn across the board
+                    new_sequences.append(sequence)
+            return new_sequences
 
         return sequences
 
@@ -627,7 +633,7 @@ class Chess:
 
         for delta in deltas:
             i = 1
-            otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
+            otherTile = Board.chessNotation(tile, i * delta[0], i * delta[1])
             while otherTile is not None:
                 i += 1
                 otherPiece = self.pieces.get(otherTile, None)
@@ -637,7 +643,7 @@ class Chess:
                     if otherPiece['team'] != piece['team']:
                         sequences.append([f'move {tile} {otherTile}'])
                     break
-                otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
+                otherTile = Board.chessNotation(tile, i * delta[0], i * delta[1])
 
         if testCastling:
             sequences += self.getCastling(tile)
@@ -657,7 +663,7 @@ class Chess:
         deltas = [(-1, -2), (-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2)]
 
         for delta in deltas:
-            otherTile = Chess.chessNotation(tile, delta[0], delta[1])
+            otherTile = Board.chessNotation(tile, delta[0], delta[1])
             if otherTile is not None:
                 otherPiece = self.pieces.get(otherTile, None)
                 if otherPiece is None or otherPiece['team'] != piece['team']:
@@ -679,7 +685,7 @@ class Chess:
 
         for delta in deltas:
             i = 1
-            otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
+            otherTile = Board.chessNotation(tile, i * delta[0], i * delta[1])
             while otherTile is not None:
                 i += 1
                 otherPiece = self.pieces.get(otherTile, None)
@@ -689,7 +695,7 @@ class Chess:
                     if otherPiece['team'] != piece['team']:
                         sequences.append([f'move {tile} {otherTile}'])
                     break
-                otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
+                otherTile = Board.chessNotation(tile, i * delta[0], i * delta[1])
 
         return sequences
 
@@ -707,7 +713,7 @@ class Chess:
 
         for delta in deltas:
             i = 1
-            otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
+            otherTile = Board.chessNotation(tile, i * delta[0], i * delta[1])
             while otherTile is not None:
                 i += 1
                 otherPiece = self.pieces.get(otherTile, None)
@@ -717,7 +723,7 @@ class Chess:
                     if otherPiece['team'] != piece['team']:
                         sequences.append([f'move {tile} {otherTile}'])
                     break
-                otherTile = Chess.chessNotation(tile, i * delta[0], i * delta[1])
+                otherTile = Board.chessNotation(tile, i * delta[0], i * delta[1])
 
         return sequences
 
@@ -734,7 +740,7 @@ class Chess:
         deltas = [(-1, -1), (-1, 1), (1, -1), (1, 1)] + [(0, -1), (-1, 0), (0, 1), (1, 0)]
 
         for delta in deltas:
-            otherTile = Chess.chessNotation(tile, delta[0], delta[1])
+            otherTile = Board.chessNotation(tile, delta[0], delta[1])
             if otherTile is not None:
                 otherPiece = self.pieces.get(otherTile, None)
                 if otherPiece is None or otherPiece['team'] != piece['team']:
