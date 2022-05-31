@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% block title %}
+    <title>Chess</title>
+    {% endblock %}
+
+    {% block scripts %}
+    {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Luckiest+Guy|Orbitron|Russo+One|Shadows+Into+Light|Teko&display=swap"> 
+    {% block links %}
+    {% endblock %}
+    
+    <link rel="shortcut icon" href="{% static 'images/chess.ico' %}" type="image/x-icon">
+</head>
+<body>
+    {% block body %}
+    {% endblock %}
+</body>
+</html>

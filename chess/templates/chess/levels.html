@@ -1,0 +1,22 @@
+{% extends 'chess/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Levels Chess Game</title>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/menu.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<img class="size-image" src="{% static 'images/levels_title.png' %}" alt="Chess title">
+<div class="container-buttons-style">
+    <h1 class="title-style">Levels</h1>
+    <div class="btn-group">
+        <!-- TO DO: Verificar onclick com chamadas das funções do arquivo JS -->
+        <button onclick="callEasyGame()" class="button-style"><h2>Fácil</h2></button><br>
+        <button onclick="callMediumGame()" class="button-style"><h2>Difícil</h2></button>
+    </div>    
+</div>
+{% endblock %}

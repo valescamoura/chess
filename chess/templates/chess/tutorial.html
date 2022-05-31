@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <header>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <Link rel="Stylesheet" type="text/css" href="./style.css">
-        <link href="https://fonts.googleapis.com/css?family=Abril+Fatface|Luckiest+Guy|Orbitron|Russo+One|Shadows+Into+Light|Teko&display=swap" rel="stylesheet"> 
-    </header>
-    <title>Rules</title>
-<body class="body-style">  
-    <img class="size-image" src="images/rules_title.png" alt="Chess title">
+{% extends 'chess/base.html' %}
+{% load static %}
+
+{% block body %}
+    <img class="size-image" src="{% static 'images/rules_title.png' %}" alt="Chess title">
     <div class="container-tutorial-content">
         <h1 class="text-style">
             Xadrez é um jogo de tabuleiro utilizando um espaço de 8 por 8 casas, resultando em um total de 64 espaços, tendo cada casa marcada entre preto e branco alternando-se as cores.
@@ -21,12 +14,12 @@
 
         <h1 class="title-style">Peças:</h1>
         <h1 class="text-style">
-            <img class="icon-style" src="images/pawn.png" alt="pawn">Peão: Única peça que só pode movimentar para frente, movimenta uma casa na vertical e na sua primeira movimentação também pode mover-se duas casas na vertical, porém, sua captura é feita movimentando-se uma casa na diagonal.
-            <br><img class="icon-style" src="images/rook.png" alt="rook">Torre: Movimenta quantas casas desejar tanto na horizontal quanto na vertical.
-            <br><img class="icon-style" src="images/bishop.png" alt="bishop">Bispo: Movimenta quantas casas desejar na diagonal.
-            <br><img class="icon-style" src="images/knight.png" alt="knight">Cavaleiro: Movimenta duas casas em um sentido (vertical ou horizontal) e mais uma casa no outro sentido, resultando em uma movimentação em formato de L, considera que ele pula os outros espaços, não capturando as peças no caminho exceto se estiver no espaço final.
-            <br><img class="icon-style" src="images/queen.png" alt="queen">Rainha: Movimenta quantas casas desejar em todos os sentidos: horizontal, vertical e diagonal.
-            <br><img class="icon-style" src="images/king.png" alt="king">Rei: Movimenta uma casa em qualquer sentido: horizontal, vertical e diagonal.
+            <img class="icon-style" src="{% static 'images/pawn.png' %}" alt="pawn">Peão: Única peça que só pode movimentar para frente, movimenta uma casa na vertical e na sua primeira movimentação também pode mover-se duas casas na vertical, porém, sua captura é feita movimentando-se uma casa na diagonal.
+            <br><img class="icon-style" src="{% static 'images/rook.png' %}" alt="rook">Torre: Movimenta quantas casas desejar tanto na horizontal quanto na vertical.
+            <br><img class="icon-style" src="{% static 'images/bishop.png' %}" alt="bishop">Bispo: Movimenta quantas casas desejar na diagonal.
+            <br><img class="icon-style" src="{% static 'images/knight.png' %}" alt="knight">Cavaleiro: Movimenta duas casas em um sentido (vertical ou horizontal) e mais uma casa no outro sentido, resultando em uma movimentação em formato de L, considera que ele pula os outros espaços, não capturando as peças no caminho exceto se estiver no espaço final.
+            <br><img class="icon-style" src="{% static 'images/queen.png' %}" alt="queen">Rainha: Movimenta quantas casas desejar em todos os sentidos: horizontal, vertical e diagonal.
+            <br><img class="icon-style" src="{% static 'images/king.png' %}" alt="king">Rei: Movimenta uma casa em qualquer sentido: horizontal, vertical e diagonal.
         </h1>
 
         <h1 class="title-style">Distribuição das peças no tabuleiro:</h1>
@@ -46,6 +39,4 @@
             <br>
         </h1>
     </div>
-</body>
-</html>
-
+{% endblock %}
