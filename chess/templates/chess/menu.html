@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>Menu Chess Game</title>
+<title>Menu</title>
 {% endblock %}
 
 {% block scripts %}
@@ -10,12 +10,13 @@
 {% endblock %}
 
 {% block body %}
-<div class="container-style">
+<img class="size-image" src="{% static 'images/title.png' %}" alt="Chess title">
+<div class="container-buttons-style">
     <div class="btn-group">
         <!-- TO DO: Verificar onclick com chamadas das funções do arquivo JS -->
-        <button onclick="callPlay()" class="button-style"><h2>PLAY</h2></button><br>
-        <button onclick="callAbout()" class="button-style"><h2>ABOUT</h2></button><br>
-        <button onclick="callTutorial()" class="button-style"><h2>TUTORIAL</h2></button>
+        <button onclick="callPlay()" class="button-style"><h2>Jogar</h2></button><br>
+        <button onclick="callTutorial()" class="button-style"><h2>Regras</h2></button><br>
+        <button onclick="callAbout()" class="button-style"><h2>Sobre</h2></button>
     </div>    
 </div>
 {% endblock %}
