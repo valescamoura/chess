@@ -24,7 +24,7 @@ while command != 'exit':
             print(f'Executing sequence: {sequence}')
             chess.execute(sequence)
 
-            sequence = min_max(chess)
+            sequence = alpha_beta(chess)
             if sequence:
                 print(f'Black Executing sequence: {sequence}')
                 chess.execute(sequence)

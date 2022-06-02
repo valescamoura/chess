@@ -13,7 +13,7 @@ while not winner:
     try:
         print('\n' + chess.toString() + '\n')
 
-        sequence = rand(chess,"white")
+        sequence = min_max(chess,"white")
         if sequence:
             white_can_move = True
             print(f'White Executing sequence: {sequence}')
@@ -25,7 +25,7 @@ while not winner:
             winner = 'White' 
         points = chess.points
     
-        sequence = min_max(chess)
+        sequence = alpha_beta(chess)
         if sequence:
             black_can_move = True
             print(f'Black Executing sequence: {sequence}')
