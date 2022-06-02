@@ -26,6 +26,7 @@ def rand(chess_board,team="black"):
 
 def min_max(chess_board,team="black"):
   '''
+    Choses a move with the best points diference.
 
   '''
 
@@ -36,7 +37,6 @@ def min_max(chess_board,team="black"):
 
 
   final_move = []
-  #final_board = []
   min_max = chess_board.points
 
   for piece in team_pieces:
@@ -52,66 +52,26 @@ def min_max(chess_board,team="black"):
 
     if len(imp_moves) != 0:
       for move in imp_moves:
-        target = move[0].split()[2]
-
-        if target in chess_board.pieces or min_max == chess_board.points:
-          new_board = chess_board.deepcopy()
-          new_board.execute(move)
-          if(team == "black"):
-            if new_board.points > min_max:
-              min_max = new_board.points
-              
-              final_move = [move]
-            elif new_board.points == min_max:
-              min_max = new_board.points
-              final_move.append(move)
-          else:
-            if new_board.points < min_max:
-              min_max = new_board.points
-              
-              final_move = [move]
-            elif new_board.points == min_max:
-              min_max = new_board.points
-              final_move.append(move)
-    else:
+        new_board = chess_board.deepcopy()
+        new_board.execute(move)
+        
+        if(team == "black"):
+          if new_board.points > min_max:
+            min_max = new_board.points
+            
+            final_move = [move]
+          elif new_board.points == min_max:
+            final_move.append(move)
+        else:
+          if new_board.points < min_max:
+            min_max = new_board.points
+            
+            final_move = [move]
+          elif new_board.points == min_max:
+            final_move.append(move)
+    
+    elif min_max == chess_board.points:
       final_move = [*final_move,*norm_moves]
 
   i = randint(0,len(final_move)-1)
   return final_move[i]
-
-def complete_min_max(chess_board,team="black"):
-  '''
-
-  '''
-
-  team_pieces = []
-  for tile in chess_board.pieces:
-    if chess_board.pieces[tile]["team"] == team:
-      team_pieces.append(tile)
-
-
-  final_move = 0
-  min_max_value = 0
-  if team == "black":
-    min_max_value = -99999999
-  else:
-    min_max_value = 99999999
-
-  for piece in team_pieces:
-    moves = chess_board.getLegalSequences(piece)
-    for move in moves:
-      new_board = chess_board.deepcopy()
-      new_board.execute(move)
-      white_move = min_max(chess_board,team="white")# HARD CODED: Mudar urgentemente
-      new_board.execute(white_move)
-
-      if(team == "black"):
-        if new_board.points > min_max_value:
-          min_max_value = new_board.points
-          final_move = move
-      else:
-         if new_board.points < min_max_value:
-          min_max_value = new_board.points
-          final_move = move
-
-  return final_move

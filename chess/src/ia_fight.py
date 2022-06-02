@@ -24,7 +24,7 @@ while not winner:
         if (points - chess.points) == 900 or chess.isBlackKingInCheckmate():
             winner = 'White' 
         points = chess.points
-
+    
         sequence = min_max(chess)
         if sequence:
             black_can_move = True
