@@ -107,10 +107,10 @@ def alpha_beta(chess_board,team="black"):
       else:
         new_board = chess_board.deepcopy()
         new_board.execute(move)
-        white_move = min_max(chess_board,team="white")
+        white_move = min_max(chess_board,team="black")
         new_board.execute(white_move)
         
-        if new_board.points < min_max_value:
+        if new_board.points < min_max_value or final_move == 0:
           min_max_value = new_board.points
           final_move = move
 
