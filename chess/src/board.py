@@ -606,7 +606,7 @@ class Board:
             new_sequences = []
             for sequence in sequences:
                 _, src, dst = sequence[-1].split(' ')
-                if src == tile and dst[1] == '1':
+                if src == tile and dst[1] == '8':
                     # Sequence results in pawn across the board
                     new_sequences.append(sequence + [f'set {dst} white rook true'])
                     new_sequences.append(sequence + [f'set {dst} white knight true'])
