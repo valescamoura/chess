@@ -1,4 +1,8 @@
-function callMediumGame(){
+function callEasyGame(){
+    console.log('Implementação em andamento...')
+}
+
+function callHardGame(){
     console.log('Implementação em andamento...')
 }
 
@@ -12,3 +16,4 @@ function callPlay() {
         }
     });
 }
+
