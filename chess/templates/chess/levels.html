@@ -2,20 +2,19 @@
 {% load static %}
 
 {% block title %}
-<title>Levels Chess Game</title>
+<title>Níveis do jogo</title>
 {% endblock %}
 
 {% block scripts %}
-<script src="{% static 'js/menu.js' %}"></script>
+<script src="{% static 'js/controller.js' %}"></script>
 {% endblock %}
 
 {% block body %}
-<img class="size-image" src="{% static 'images/levels_title.png' %}" alt="Chess title">
+<img class="size-image" src="{% static 'images/levels_title.png' %}" alt="Levels options">
 <div class="container-buttons-style">
-    <h1 class="title-style">Levels</h1>
     <div class="btn-group">
         <a href="{% url 'chess:gamepage' %}"><button class="button-style"><h2>Fácil</h2></button></a>
-        <button onclick="callMediumGame()" class="button-style"><h2>Difícil</h2></button>
+        <a href=""><button class="button-style"><h2>Difícil</h2></button></a>
     </div>    
 </div>
 {% endblock %}

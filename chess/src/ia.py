@@ -2,7 +2,7 @@ from random import choice
 
 def rand(chess_board,team="black"):
   '''
-    Choses a random move from a random black piece.
+    Choses a random movements from a random black piece.
   '''
 
   team_pieces = []
@@ -25,12 +25,12 @@ def rand(chess_board,team="black"):
 
 def min_max():
     """
-        Tabela de valores de peças(baseado em sua equivalência com o peao):
-            peao   : 10
-            cavalo : 30
-            bispo  : 30
-            torre  : 50 
-            rainha : 90
-            rei    : 900
+        Tabela de valores de peças(baseado em sua equivalência com o pawn):
+            pawn   : 10
+            knight, : 30
+            bishop  : 30
+            rook  : 50 
+            queen : 90
+            king    : 900
     """
 

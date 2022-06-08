@@ -1,0 +1,21 @@
+{% extends 'chess/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Você ganhou!</title>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/menu.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+<img class="size-image" src="{% static 'images/victory.png' %}" alt="Winner message">
+
+<div class="container-buttons-style">
+    <div class="btn-group">
+        <a href="{% url 'chess:levels' %}"><button class="button-style"><h2>Jogar Novamente</h2></button></a>
+        <a href="{% url 'chess:menu' %}"><button class="button-style"><h2>Voltar ao Menu</h2></button></a>
+    </div>    
+</div>
+{% endblock %}

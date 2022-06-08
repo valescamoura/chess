@@ -1,38 +1,42 @@
 {% extends 'chess/base.html' %}
 {% load static %}
 
+{% block title %}
+<title>Regras do jogo</title>
+{% endblock %}
+
 {% block body %}
     <img class="size-image" src="{% static 'images/rules_title.png' %}" alt="Chess title">
     <div class="container-tutorial-content">
         <h1 class="text-style">
-            Xadrez é um jogo de tabuleiro utilizando um espaço de 8 por 8 casas, resultando em um total de 64 espaços, tendo cada casa marcada entre preto e branco alternando-se as cores.
-            <br>O jogo é separado em dois times, peças brancas e peças pretas, e tendo o jogo sempre começando com o jogador das peças brancas com o objetivo final de eliminar o rei adversário podendo, ao longo do caminho, capturar as outras peças do oponente ao parar em uma casa já ocupada por outra peça do adversário, removendo-as do jogo.
-            <br>Cada jogador possui disponível 16 peças, sendo elas: 8 peões, 2 torres, 2 bispos, 2 cavaleiros, 1 dama e 1 rei.
-            <br>Existem duas definições básicas no xadrez: xeque, que ocorre quando o rei está em uma situação que pode ser capturado e xeque-mate, que semelhante ao caso anterior o rei também está sendo ameaçado, porém, nesse caso, não existe como movimentar uma peça para salvá-lo.
-            <br>Cada peça no xadrez apresenta um padrão de movimentação único e uma peça não pode ultrapassar um espaço ocupado por uma peça, além disso, não é permitido mover uma peça de modo que ponha o próprio rei em xeque ou xeque-mate.
+            Xadrez é um jogo de tabuleiro utilizando um espaço de 8 por 8 casas, resultando em um total de 64 espaços, tendo cada casa marcada entre black e white alternando-se as cores.
+            <br>O jogo é separado em dois times, peças brancas e peças pretas, e tendo o jogo sempre começando com o jogador das peças brancas com o objetivo final de eliminar o king adversário podendo, ao longo do caminho, capturar as outras peças do oponente ao parar em uma casa já ocupada por outra peça do adversário, removendo-as do jogo.
+            <br>Cada jogador possui disponível 16 peças, sendo elas: 8 peões, 2 torres, 2 bispos, 2 cavaleiros, 1 dama e 1 king.
+            <br>Existem duas definições básicas no xadrez: xeque, que ocorre quando o king está em uma situação que pode ser capturado e xeque-mate, que semelhante ao caso anterior o king também está sendo ameaçado, porém, nesse caso, não existe como movimentar uma peça para salvá-lo.
+            <br>Cada peça no xadrez apresenta um padrão de movimentação único e uma peça não pode ultrapassar um espaço ocupado por uma peça, além disso, não é permitido mover uma peça de modo que ponha o próprio king em xeque ou xeque-mate.
         </h1>
 
         <h1 class="title-style">Peças:</h1>
         <h1 class="text-style">
             <img class="icon-style" src="{% static 'images/pawn.png' %}" alt="pawn">Peão: Única peça que só pode movimentar para frente, movimenta uma casa na vertical e na sua primeira movimentação também pode mover-se duas casas na vertical, porém, sua captura é feita movimentando-se uma casa na diagonal.
-            <br><img class="icon-style" src="{% static 'images/rook.png' %}" alt="rook">Torre: Movimenta quantas casas desejar tanto na horizontal quanto na vertical.
-            <br><img class="icon-style" src="{% static 'images/bishop.png' %}" alt="bishop">Bispo: Movimenta quantas casas desejar na diagonal.
-            <br><img class="icon-style" src="{% static 'images/knight.png' %}" alt="knight">Cavaleiro: Movimenta duas casas em um sentido (vertical ou horizontal) e mais uma casa no outro sentido, resultando em uma movimentação em formato de L, considera que ele pula os outros espaços, não capturando as peças no caminho exceto se estiver no espaço final.
-            <br><img class="icon-style" src="{% static 'images/queen.png' %}" alt="queen">Rainha: Movimenta quantas casas desejar em todos os sentidos: horizontal, vertical e diagonal.
-            <br><img class="icon-style" src="{% static 'images/king.png' %}" alt="king">Rei: Movimenta uma casa em qualquer sentido: horizontal, vertical e diagonal.
+            <br><img class="icon-style" src="{% static 'images/rook.png' %}" alt="rook">rook: movimenta quantas casas desejar tanto na horizontal quanto na vertical.
+            <br><img class="icon-style" src="{% static 'images/bishop.png' %}" alt="bishop">bishop: movimenta quantas casas desejar na diagonal.
+            <br><img class="icon-style" src="{% static 'images/knight.png' %}" alt="knight">Cavaleiro: movimenta duas casas em um sentido (vertical ou horizontal) e mais uma casa no outro sentido, resultando em uma movimentação em formato de L, considera que ele pula os outros espaços, não capturando as peças no caminho exceto se estiver no espaço final.
+            <br><img class="icon-style" src="{% static 'images/queen.png' %}" alt="queen">queen: movimenta quantas casas desejar em todos os sentidos: horizontal, vertical e diagonal.
+            <br><img class="icon-style" src="{% static 'images/king.png' %}" alt="king">king: movimenta uma casa em qualquer sentido: horizontal, vertical e diagonal.
         </h1>
 
         <h1 class="title-style">Distribuição das peças no tabuleiro:</h1>
         <h1 class="text-style">
-            Considerando as peças brancas do tabuleiro e tendo como a casa no canto inferior esquerdo marcado como preta, as peças são posicionadas na seguinte ordem: Torre, Cavaleiro, Bispo, Rei, Rainha, Bispo, Cavaleiro e Torre. Na segunda linha à frente, os 8 peões são posicionados.
+            Considerando as peças brancas do tabuleiro e tendo como a casa no canto inferior esquerdo marcado como preta, as peças são posicionadas na seguinte ordem: rook, Cavaleiro, bishop, king, queen, bishop, Cavaleiro e rook. Na segunda linha à frente, os 8 peões são posicionados.
             As peças pretas são posicionadas de modo para ficarem nas mesmas colunas em relação as peças brancas.
         </h1>
 
         <h1 class="title-style"> Movimentações especiais:</h1>
         <h1 class="text-style">
             Captura em passant: Caso um peão tenha deslocado três casas para frente e o peão em uma coluna oposta faça uma movimentação de duas casas para frente, o primeiro tem o direito de mover-se em diagonal para a coluna do peão adversário e capturar a sua peça.
-            <br>Promoção de peão: Ao chegar no final do tabuleiro na direção oposta, o peão pode ser promovido para qualquer outra peça do jogo, exceto para um segundo rei.
-            <br>Roque: Movimentação que inclui uma das torres e o rei. Nela o rei movimenta-se duas casas em direção à torre e a torre se posiciona entre a posição antiga do rei e a nova. Para isso é preciso que as casas entre o rei e a torre não estejam ocupadas, ambos não podem ter sido movidos e o rei também não pode estar em xeque no momento da jogada.
+            <br>Promoção de peão: Ao chegar no final do tabuleiro na direção oposta, o peão pode ser promovido para qualquer outra peça do jogo, exceto para um segundo king.
+            <br>Roque: Movimentação que inclui uma das torres e o king. Nela o king movimenta-se duas casas em direção à rook e a rook se posiciona entre a posição antiga do king e a nova. Para isso é preciso que as casas entre o king e a rook não estejam ocupadas, ambos não podem ter sido movidos e o king também não pode estar em xeque no momento da jogada.
             <br>
             <br>
             <br>
