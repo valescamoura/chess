@@ -3,17 +3,20 @@ body {
 }
 
 .button-style {
-    text-align: middle;
+    background-color:  #ece8e1;
+    border-radius: 30px 30px 30px 30px;
+    color: #020236;
     margin-top: 20px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 80px;
-    padding-right: 80px;
+    height: 70px;
+    line-height: 10px;
+    width: 300px;
     background-color:  #ece8e1;
     border-radius: 30px 30px 30px 30px;
     color: #020236;
     font-family: 'Luckiest Guy';
     font-size: 18px;
+    text-align: center;
+ 
 }
 
 .btn-group {
@@ -34,7 +37,7 @@ body {
     margin-bottom: 0px;
     padding-bottom: 0px;
     padding-top: 100px;
-    padding-left: 550px;
+    padding-left: 10px;
     font-weight: bolder;
     color: #f6c226;
     font-size: 30px;
@@ -50,9 +53,8 @@ body {
       
 }
 .container-style-about {
-    margin-right: 0;
-    margin-left: 0px;
-    margin-top: 80px;
+   margin: auto;
+   margin-bottom: 20px;
     border-width: 2px;
     border-color: black;
     border-style: solid;
@@ -61,33 +63,33 @@ body {
     background-color: rgb(103, 100, 100);
     border-radius: 30px 30px 30px 30px;
     text-align: center;
-    float: left;
-    display: inline-block;
-    margin-left: 20px;
-      
+
+
 }
 
 .aux{
-    float: left;
-    display: inline-block;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
 }
 
 .container-tutorial-content{
     margin-left: 50px;
-    width: 1350px;
+    width: auto;
     height: 1000px;
 }
 
 .size-image{
-    margin-top: 30px;
-    padding-left: 550px;
     width: 400px;
     height: 250px;
+    margin: auto;
+    display: block;
 }
-
 
 .icon-style{
     margin-top: 20px;
     width: 60px;
     height: 60px;
 }
+
+
