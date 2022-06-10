@@ -434,7 +434,6 @@ class Board:
         # pieces = [piece for delta in deltas if (piece == self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None)) is not None]
         pieces = [self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None) for delta in deltas]
         pieces = [piece for piece in pieces if piece is not None]
-        print(pieces)
         for piece in pieces:
             if piece['team'] != team and piece['type'] == 'knight':
                 return True
