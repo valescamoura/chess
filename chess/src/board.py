@@ -334,6 +334,8 @@ class Board:
         if not king:
             return False
 
+        print(f'king is a valid tile: {king}')
+
         # Pawn
         if team == 'black':
             piece = self.pieces.get(Board.chessNotation(king, 1, -1), None)
@@ -355,28 +357,36 @@ class Board:
 
         # Straights: Rook or Queen
         # Left
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, 0, -i), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, 0, -i), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king, 0, -i), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
             break
 
         # Right
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, 0, i), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, 0, i), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king, 0, i), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
             break
 
         # Top
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, -i, 0), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, -i, 0), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king, -i, 0), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
             break
 
         # Bottom
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, i, 0), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, i, 0), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king, i, 0), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'rook' or piece['type'] == 'queen'):
                 return True
@@ -384,28 +394,36 @@ class Board:
 
         # Diagonals: Bishop or Queen
         # Top left
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, -i, -i), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, -i, -i), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king,  -i, -i), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
             break
 
         # Top right
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, -i, i), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king, -i, i), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king,  -i, i), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
             break
 
         # Bottom right
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king,  i, i), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king,  i, i), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king,  i, i), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
             break
 
         # Bottom left
-        pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king,  i, -i), None) is not None)]
+        # pieces = [piece for i in range(1, 8) if (piece == self.pieces.get(Board.chessNotation(king,  i, -i), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king,  i, -i), None) for i in range(1, 8)]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and (piece['type'] == 'bishop' or piece['type'] == 'queen'):
                 return True
@@ -413,14 +431,18 @@ class Board:
 
         # Knights
         deltas = [(-1, -2), (-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2)]
-        pieces = [piece for delta in deltas if (piece == self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None) is not None)]
+        # pieces = [piece for delta in deltas if (piece == self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None)) is not None]
+        pieces = [self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None) for delta in deltas]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and piece['type'] == 'knight':
                 return True
 
         # Kings
         deltas = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
-        pieces = [piece for delta in deltas if (piece == self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None) is not None)]
+        # pieces = [piece for delta in deltas if (piece == self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None) is not None)]
+        pieces = [self.pieces.get(Board.chessNotation(king, delta[0], delta[1]), None) for delta in deltas]
+        pieces = [piece for piece in pieces if piece is not None]
         for piece in pieces:
             if piece['team'] != team and piece['type'] == 'king':
                 return True

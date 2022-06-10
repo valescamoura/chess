@@ -1,4 +1,4 @@
-from board import *
+from board import *                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 from ia import *
 
 chess = Board.initial()
@@ -13,7 +13,7 @@ while not winner:
     try:
         print('\n' + chess.toString() + '\n')
 
-        sequence = min_max(chess,"white")
+        sequence = min_max(chess,"white")[0]
         if sequence:
             white_can_move = True
             print(f'White Executing sequence: {sequence}')

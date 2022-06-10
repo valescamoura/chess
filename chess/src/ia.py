@@ -74,23 +74,77 @@ def min_max(chess_board,team="black"):
     final_move = norm_moves
 
   i = randint(0,len(final_move)-1)
-  return final_move[i]
+  return final_move[i],min_max
 
-  
+def in_min_max(chess_board,depth,alpha,beta,team="black"):
+  '''
+    Choses a move with the best points diference.
+
+  '''
+  if depth == 0:
+    return chess_board.points
+
+  team_pieces = []
+  imp_moves = []
+  norm_moves = []
+  for tile in chess_board.pieces:
+    if chess_board.pieces[tile]["team"] == team:
+      team_pieces.append(tile)
+
+  min_max = chess_board.points
+
+  for piece in team_pieces:
+    moves = chess_board.getLegalSequences(piece)
+
+    for move in moves:
+      if move[0].split()[2] in chess_board.pieces:
+        imp_moves.append(move)
+      else:
+        norm_moves.append(move)
+
+  # Important moves will be visited first
+  if depth != 1:
+    imp_moves = imp_moves + norm_moves
+
+  for move in imp_moves:
+    new_board = chess_board.deepcopy()
+    new_board.execute(move)
+    
+    if(team == "black"):
+      child_points = in_min_max(new_board,depth - 1,alpha,beta,team="white") 
+
+      min_max = max([child_points,min_max])
+      alpha = max(min_max,alpha)
+      if beta <= alpha:
+        return min_max
+
+    else:
+      child_points = in_min_max(new_board,depth - 1,alpha,beta,team="black") 
+
+      min_max = min([child_points,min_max])
+      beta = min(min_max,beta)
+
+      if beta <= alpha:
+        return min_max
+       
+  return min_max
+
+
 def alpha_beta(chess_board,team="black"):
   '''
     Implements a alpha-beta prunning.
 
   '''
-
   team_pieces = []
   for tile in chess_board.pieces:
     if chess_board.pieces[tile]["team"] == team:
       team_pieces.append(tile)
 
 
-  final_move = 0
+  final_move = []
   min_max_value = chess_board.points
+  alpha = -99999
+
 
   for piece in team_pieces:
     moves = chess_board.getLegalSequences(piece)
@@ -98,21 +152,24 @@ def alpha_beta(chess_board,team="black"):
       if(team == "black"):
         new_board = chess_board.deepcopy()
         new_board.execute(move)
-        white_move = min_max(chess_board,team="white")
-        new_board.execute(white_move)
-
-        if new_board.points > min_max_value or final_move == 0:
-          min_max_value = new_board.points
-          final_move = move
+        oponent_move_points = in_min_max(new_board,1,alpha,9999,team="white")
+        alpha = max(oponent_move_points,alpha)
+        
+        if oponent_move_points > min_max_value or final_move == []:
+          min_max_value = oponent_move_points
+          final_move = [move]
+        elif  oponent_move_points == min_max_value:
+          final_move.append(move)
+      # EDIT WHITE!!!!!!!!
       else:
         new_board = chess_board.deepcopy()
         new_board.execute(move)
-        white_move = min_max(chess_board,team="black")
-        new_board.execute(white_move)
+        oponent_move_points = min_max(chess_board,team="black")[1]
         
-        if new_board.points < min_max_value or final_move == 0:
+        if oponent_move_points < min_max_value or final_move == 0:
           min_max_value = new_board.points
           final_move = move
 
-  return final_move
+  i = randint(0,len(final_move)-1)
+  return final_move[i]
   
