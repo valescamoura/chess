@@ -13,4 +13,5 @@ urlpatterns = [
     path('defeat/', views.defeat, name='defeat'),
     path('get_moviments/', views.get_moviments, name='get_moviments'),
     path('move_piece/', views.move_piece, name='move_piece'),
+    path('get_ai_move/', views.get_ai_move, name='get_ai_move'),
 ]

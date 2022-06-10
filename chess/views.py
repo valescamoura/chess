@@ -44,3 +44,9 @@ def move_piece(request):
 
     response = {'new_board': new_board}
     return JsonResponse(response)
+
+def get_ai_move(request):
+    new_board = Services.IAMove()
+    
+    response = {'new_board': new_board}
+    return JsonResponse(response)

@@ -106,7 +106,7 @@ function getLegalMoviments(boardHouse) {
         // contentType: false,
         success: function(response) {
             const legal_moves =  response['legal_moves'];
-            console.log(legal_moves);
+            console.log('legal moves, id ', boardHouse, ' = ',legal_moves);
             for(let i = 0; i < legal_moves.length; i++) {
                 hightlight(legal_moves[i]);
             }
@@ -121,49 +121,47 @@ function movePiece(oldPiece, newPiece) {
         type: 'GET',
         data: data,
         success: function(response) {
-            board =  response['new_board'];
+            new_board =  response['new_board'];
+            board = new_board
+            drawBoard(new_board)
         }
     });
 }
 
-function drawBoard() {
-    console.log('entrou')
-    const boardKeys = Object.keys(board)
+function drawBoard(new_board) {
+    const boardKeys = Object.keys(new_board)
     const boardKeysFull = ['a2', 'a4', 'a6', 'a8', 'b1', 'b3', 'b5', 'b7', 'c2', 'c4', 'c6', 'c8', 'd1', 'd3', 'd5', 'd7', 'e2', 'e4', 'e6', 'e8', 'f1', 'f3', 'f5', 'f7', 'g2', 'g4', 'g6', 'g8', 'h1', 'h3', 'h5', 'h7',
     'a1', 'a3', 'a5', 'a7', 'b2', 'b4', 'b6', 'b8', 'c1', 'c3', 'c5', 'c7', 'd2', 'd4', 'd6', 'd8', 'e1', 'e3', 'e5', 'e7', 'f2', 'f4', 'f6', 'f8', 'g1', 'g3', 'g5', 'g7', 'h2', 'h4', 'h6', 'h8']
-    console.log('chegou', boardKeysFull.length)
-    
+
     for (let i = 0; i < boardKeysFull.length; i++) {
         const id = boardKeysFull[i];
-        //console.log('id -> ', id)
         if(boardKeys.includes(id)) {
-            const piece = pieces[board[id].team][board[id].type] + ';';
-            console.log(piece, id)
-            console.log(document.getElementById(id).innerHTML)
-            document.getElementById(id).innerHTML = piece;
-            console.log(document.getElementById(id).innerHTML)
+            const piece = pieces[new_board[id].team][new_board[id].type] + ';';
+            document.getElementById(id).innerHTML = piece;  
         } else {
             document.getElementById(id).innerHTML = '';
         }
     }
-
-    // for (let i = 0; i < boardKeysFull.lenght; i++) {
-    //     console.log('i = ', i)
-    //     console.log('aaa = ', boardKeysFull[i])
-    //     const id = boardKeysFull[i];
-    //     if(boardKeys.includes(id)) {
-    //         console.log('abc = ', id)
-    //         document.getElementById(id).innerHTML = pieces[board[id].team][board[id].type];
-    //     } else {
-    //         console.log('def = ', id)
-    //         document.getElementById(id).innerHTML = '';
-    //     }
-    // }
 }
 
 function hightlight(idBoardHouse) {
     const boardHouse = document.getElementById(idBoardHouse);
     boardHouse.style.backgroundColor = '#9370DB';
+}
+
+function getIAMove() {
+    if(itsAITurn) {
+        $.ajax({
+            url: '/get_ai_move/',
+            type: 'GET',
+            success: function(response) {
+                new_board =  response['new_board'];
+                board = new_board;
+                drawBoard(new_board);
+                itsAITurn = false
+            }
+        });
+    }
 }
 
 $('.board').on('click', '.board-house', function() {
@@ -177,23 +175,17 @@ $('.board').on('click', '.board-house', function() {
             hightlight(clickedBoardHouseId);
             getLegalMoviments(clickedBoardHouseId);
         } else if(boardHouse.innerText === '' && selected_piece !== ''){
-            // const piece = pieces[board[selected_piece].team][board[selected_piece].type]
+            // const piece = pieces[board[selected_piece].team][board[selected_piece].type];
             // boardHouse.innerHTML = piece + ';';
             // document.getElementById(selected_piece).innerHTML = '';
+
             movePiece(selected_piece, clickedBoardHouseId)
-            drawBoard()
             selected_piece = ''
             itsAITurn = true
+            getIAMove();
         }
     }
 });
-
-function ia_movement() {
-    if(itsAITurn) {
-        // get mov da IA
-    }
-    itsAITurn = false
-}
 
 //////////////////////////////////////////////////////////
 
