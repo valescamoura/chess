@@ -2,11 +2,7 @@
 {% load static %}
 
 {% block title %}
-<title>Chess Game</title>
-{% endblock %}
-
-{% block scripts %}
-<script src="{% static 'js/script.js' %}"></script>
+<title>Chess</title>
 {% endblock %}
 
 {% block links %}
@@ -14,77 +10,87 @@
 {% endblock %}
 
 {% block body %}
-<div class="board"> 
-    <div id="a8">&#9820</div>
-    <div id="b8">&#9822</div>
-    <div id="c8">&#9821</div>	
-    <div id="d8">&#9819</div>
-    <div id="e8">&#9818</div>	
-    <div id="f8">&#9821</div>
-    <div id="g8">&#9822</div>	
-    <div id="h8">&#9820</div>
-    
-    <div id="a7">&#9823</div>
-    <div id="b7">&#9823</div>
-    <div id="c7">&#9823</div>
-    <div id="d7">&#9823</div>
-    <div id="e7">&#9823</div>
-    <div id="f7">&#9823</div>
-    <div id="g7">&#9823</div>
-    <div id="h7">&#9823</div>
-    
-    <div id="a6"></div>	
-    <div id="b6"></div>
-    <div id="c6"></div>	
-    <div id="d6"></div>
-    <div id="e6"></div>	
-    <div id="f6"></div>
-    <div id="g6"></div>	
-    <div id="h6"></div>
-    
-    <div id="a5"></div>	
-    <div id="b5"></div>
-    <div id="c5"></div>	
-    <div id="d5"></div>
-    <div id="e5"></div>	
-    <div id="f5"></div>
-    <div id="g5"></div>	
-    <div id="h5"></div>
-    
-    <div id="a4"></div>	
-    <div id="b4"></div>
-    <div id="c4"></div>	
-    <div id="d4"></div>
-    <div id="e4"></div>	
-    <div id="f4"></div>
-    <div id="g4"></div>	
-    <div id="h4"></div>
-    
-    <div id="a3"></div>	
-    <div id="b3"></div>
-    <div id="c3"></div>	
-    <div id="d3"></div>
-    <div id="e3"></div>	
-    <div id="f3"></div>
-    <div id="g3"></div>	
-    <div id="h3"></div>
-    
-    <div id="a2">&#9817</div>
-    <div id="b2">&#9817</div>
-    <div id="c2">&#9817</div>
-    <div id="d2">&#9817</div>
-    <div id="e2">&#9817</div>
-    <div id="f2">&#9817</div>
-    <div id="g2">&#9817</div>
-    <div id="h2">&#9817</div>
-    
-    <div id="a1">&#9814</div>
-    <div id="b1">&#9816</div>
-    <div id="c1">&#9815</div>
-    <div id="d1">&#9813</div>
-    <div id="e1">&#9812</div>
-    <div id="f1">&#9815</div>
-    <div id="g1">&#9816</div>
-    <div id="h1">&#9814</div>
+<div class="fixIcon">
+    <a href="{% url 'chess:index' %}"><button class="menuIconOnPageGame"><img src="{% static 'images/menuIcon.png' %}" height ="20" width="20" /></button></a>
 </div>
+
+<div id="boardBackground"></div>
+
+<div class="board"> 
+    <div class="board-house" id="a8"></div>
+    <div class="board-house" id="b8"></div>
+    <div class="board-house" id="c8"></div>	
+    <div class="board-house" id="d8"></div>
+    <div class="board-house" id="e8"></div>	
+    <div class="board-house" id="f8"></div>
+    <div class="board-house" id="g8"></div>	
+    <div class="board-house" id="h8"></div>
+
+    <div class="board-house" id="a7"></div>
+    <div class="board-house" id="b7"></div>
+    <div class="board-house" id="c7"></div>
+    <div class="board-house" id="d7"></div>
+    <div class="board-house" id="e7"></div>
+    <div class="board-house" id="f7"></div>
+    <div class="board-house" id="g7"></div>
+    <div class="board-house" id="h7"></div>
+
+    <div class="board-house" id="a6"></div>	
+    <div class="board-house" id="b6"></div>
+    <div class="board-house" id="c6"></div>	
+    <div class="board-house" id="d6"></div>
+    <div class="board-house" id="e6"></div>	
+    <div class="board-house" id="f6"></div>
+    <div class="board-house" id="g6"></div>	
+    <div class="board-house" id="h6"></div>
+
+    <div class="board-house" id="a5"></div>	
+    <div class="board-house" id="b5"></div>
+    <div class="board-house" id="c5"></div>	
+    <div class="board-house" id="d5"></div>
+    <div class="board-house" id="e5"></div>	
+    <div class="board-house" id="f5"></div>
+    <div class="board-house" id="g5"></div>	
+    <div class="board-house" id="h5"></div>
+
+    <div class="board-house" id="a4"></div>	
+    <div class="board-house" id="b4"></div>
+    <div class="board-house" id="c4"></div>	
+    <div class="board-house" id="d4"></div>
+    <div class="board-house" id="e4"></div>	
+    <div class="board-house" id="f4"></div>
+    <div class="board-house" id="g4"></div>	
+    <div class="board-house" id="h4"></div>
+
+    <div class="board-house" id="a3"></div>	
+    <div class="board-house" id="b3"></div>
+    <div class="board-house" id="c3"></div>	
+    <div class="board-house" id="d3"></div>
+    <div class="board-house" id="e3"></div>	
+    <div class="board-house" id="f3"></div>
+    <div class="board-house" id="g3"></div>	
+    <div class="board-house" id="h3"></div>
+
+    <div class="board-house" id="a2"></div>
+    <div class="board-house" id="b2"></div>
+    <div class="board-house" id="c2"></div>
+    <div class="board-house" id="d2"></div>
+    <div class="board-house" id="e2"></div>
+    <div class="board-house" id="f2"></div>
+    <div class="board-house" id="g2"></div>
+    <div class="board-house" id="h2"></div>
+
+    <div class="board-house" id="a1"></div>
+    <div class="board-house" id="b1"></div>
+    <div class="board-house" id="c1"></div>
+    <div class="board-house" id="d1"></div>
+    <div class="board-house" id="e1"></div>
+    <div class="board-house" id="f1"></div>
+    <div class="board-house" id="g1"></div>
+    <div class="board-house" id="h1"></div>
+</div>
+{% endblock %}
+
+{% block scriptsBody %}
+<script src="{% static 'js/controller.js' %}"></script>
 {% endblock %}

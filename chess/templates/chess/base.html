@@ -20,8 +20,11 @@
     
     <link rel="shortcut icon" href="{% static 'images/chess.ico' %}" type="image/x-icon">
 </head>
-<body>
+<body onload="initialBoard();">
     {% block body %}
+    {% endblock %}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    {% block scriptsBody %}
     {% endblock %}
 </body>
 </html>
