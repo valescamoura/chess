@@ -1,5 +1,5 @@
 from random import choice, randint
-from board import Board
+from chess.src.board import Board
 
 def rand(chess_board,team="black"):
   '''
