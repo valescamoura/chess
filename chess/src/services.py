@@ -70,7 +70,7 @@ class Services:
         movements = []
         for piece in chess.pieces:
             if chess.pieces[piece]['team'] == team:
-                movements.append(chess.geLegalSequences(piece))
+                movements.append(chess.getLegalSequences(piece))
 
         if movements:
             return True
