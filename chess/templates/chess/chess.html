@@ -5,61 +5,92 @@
 <title>Chess</title>
 {% endblock %}
 
-{% block scripts %}
-<script src="{% static 'js/controller.js' %}"></script>
-{% endblock %}
-
 {% block links %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/chess.css' %}">
 {% endblock %}
 
 {% block body %}
 <div class="fixIcon">
-    <a href="{% url 'chess:menu' %}"><button class="menuIconOnPageGame"><img src="{% static 'images/menuIcon.png' %}" height ="20" width="20" /></button></a>
+    <a href="{% url 'chess:index' %}"><button class="menuIconOnPageGame"><img src="{% static 'images/menuIcon.png' %}" height ="20" width="20" /></button></a>
 </div>
 
 <div id="boardBackground"></div>
 
 <div class="board"> 
-    <div id="t11" onclick="select(1,1);"></div>	<div id="t12" onclick="select(1,2);"></div>
-    <div id="t13" onclick="select(1,3);"></div>	<div id="t14" onclick="select(1,4);"></div>
-    <div id="t15" onclick="select(1,5);"></div>	<div id="t16" onclick="select(1,6);"></div>
-    <div id="t17" onclick="select(1,7);"></div>	<div id="t18" onclick="select(1,8);"></div>
-    
-    <div id="t21" onclick="select(2,1);"></div>	<div id="t22" onclick="select(2,2);"></div>
-    <div id="t23" onclick="select(2,3);"></div>	<div id="t24" onclick="select(2,4);"></div>
-    <div id="t25" onclick="select(2,5);"></div>	<div id="t26" onclick="select(2,6);"></div>
-    <div id="t27" onclick="select(2,7);"></div>	<div id="t28" onclick="select(2,8);"></div>
-    
-    <div id="t31" onclick="select(3,1);"></div>	<div id="t32" onclick="select(3,2);"></div>
-    <div id="t33" onclick="select(3,3);"></div>	<div id="t34" onclick="select(3,4);"></div>
-    <div id="t35" onclick="select(3,5);"></div>	<div id="t36" onclick="select(3,6);"></div>
-    <div id="t37" onclick="select(3,7);"></div>	<div id="t38" onclick="select(3,8);"></div>
-    
-    <div id="t41" onclick="select(4,1);"></div>	<div id="t42" onclick="select(4,2);"></div>
-    <div id="t43" onclick="select(4,3);"></div>	<div id="t44" onclick="select(4,4);"></div>
-    <div id="t45" onclick="select(4,5);"></div>	<div id="t46" onclick="select(4,6);"></div>
-    <div id="t47" onclick="select(4,7);"></div>	<div id="t48" onclick="select(4,8);"></div>
-    
-    <div id="t51" onclick="select(5,1);"></div>	<div id="t52" onclick="select(5,2);"></div>
-    <div id="t53" onclick="select(5,3);"></div>	<div id="t54" onclick="select(5,4);"></div>
-    <div id="t55" onclick="select(5,5);"></div>	<div id="t56" onclick="select(5,6);"></div>
-    <div id="t57" onclick="select(5,7);"></div>	<div id="t58" onclick="select(5,8);"></div>
-    
-    <div id="t61" onclick="select(6,1);"></div>	<div id="t62" onclick="select(6,2);"></div>
-    <div id="t63" onclick="select(6,3);"></div>	<div id="t64" onclick="select(6,4);"></div>
-    <div id="t65" onclick="select(6,5);"></div>	<div id="t66" onclick="select(6,6);"></div>
-    <div id="t67" onclick="select(6,7);"></div>	<div id="t68" onclick="select(6,8);"></div>
-    
-    <div id="t71" onclick="select(7,1);"></div>	<div id="t72" onclick="select(7,2);"></div>
-    <div id="t73" onclick="select(7,3);"></div>	<div id="t74" onclick="select(7,4);"></div>
-    <div id="t75" onclick="select(7,5);"></div>	<div id="t76" onclick="select(7,6);"></div>
-    <div id="t77" onclick="select(7,7);"></div>	<div id="t78" onclick="select(7,8);"></div>
-    
-    <div id="t81" onclick="select(8,1);"></div>	<div id="t82" onclick="select(8,2);"></div>
-    <div id="t83" onclick="select(8,3);"></div>	<div id="t84" onclick="select(8,4);"></div>
-    <div id="t85" onclick="select(8,5);"></div>	<div id="t86" onclick="select(8,6);"></div>
-    <div id="t87" onclick="select(8,7);"></div>	<div id="t88" onclick="select(8,8);"></div>
-    
+    <div class="board-house" id="a8"></div>
+    <div class="board-house" id="b8"></div>
+    <div class="board-house" id="c8"></div>	
+    <div class="board-house" id="d8"></div>
+    <div class="board-house" id="e8"></div>	
+    <div class="board-house" id="f8"></div>
+    <div class="board-house" id="g8"></div>	
+    <div class="board-house" id="h8"></div>
+
+    <div class="board-house" id="a7"></div>
+    <div class="board-house" id="b7"></div>
+    <div class="board-house" id="c7"></div>
+    <div class="board-house" id="d7"></div>
+    <div class="board-house" id="e7"></div>
+    <div class="board-house" id="f7"></div>
+    <div class="board-house" id="g7"></div>
+    <div class="board-house" id="h7"></div>
+
+    <div class="board-house" id="a6"></div>	
+    <div class="board-house" id="b6"></div>
+    <div class="board-house" id="c6"></div>	
+    <div class="board-house" id="d6"></div>
+    <div class="board-house" id="e6"></div>	
+    <div class="board-house" id="f6"></div>
+    <div class="board-house" id="g6"></div>	
+    <div class="board-house" id="h6"></div>
+
+    <div class="board-house" id="a5"></div>	
+    <div class="board-house" id="b5"></div>
+    <div class="board-house" id="c5"></div>	
+    <div class="board-house" id="d5"></div>
+    <div class="board-house" id="e5"></div>	
+    <div class="board-house" id="f5"></div>
+    <div class="board-house" id="g5"></div>	
+    <div class="board-house" id="h5"></div>
+
+    <div class="board-house" id="a4"></div>	
+    <div class="board-house" id="b4"></div>
+    <div class="board-house" id="c4"></div>	
+    <div class="board-house" id="d4"></div>
+    <div class="board-house" id="e4"></div>	
+    <div class="board-house" id="f4"></div>
+    <div class="board-house" id="g4"></div>	
+    <div class="board-house" id="h4"></div>
+
+    <div class="board-house" id="a3"></div>	
+    <div class="board-house" id="b3"></div>
+    <div class="board-house" id="c3"></div>	
+    <div class="board-house" id="d3"></div>
+    <div class="board-house" id="e3"></div>	
+    <div class="board-house" id="f3"></div>
+    <div class="board-house" id="g3"></div>	
+    <div class="board-house" id="h3"></div>
+
+    <div class="board-house" id="a2"></div>
+    <div class="board-house" id="b2"></div>
+    <div class="board-house" id="c2"></div>
+    <div class="board-house" id="d2"></div>
+    <div class="board-house" id="e2"></div>
+    <div class="board-house" id="f2"></div>
+    <div class="board-house" id="g2"></div>
+    <div class="board-house" id="h2"></div>
+
+    <div class="board-house" id="a1"></div>
+    <div class="board-house" id="b1"></div>
+    <div class="board-house" id="c1"></div>
+    <div class="board-house" id="d1"></div>
+    <div class="board-house" id="e1"></div>
+    <div class="board-house" id="f1"></div>
+    <div class="board-house" id="g1"></div>
+    <div class="board-house" id="h1"></div>
 </div>
+{% endblock %}
+
+{% block scriptsBody %}
+<script src="{% static 'js/controller.js' %}"></script>
 {% endblock %}

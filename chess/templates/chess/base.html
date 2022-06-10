@@ -12,7 +12,6 @@
     {% endblock %}
 
     {% block scripts %}
-    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     {% endblock %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|Luckiest+Guy|Orbitron|Russo+One|Shadows+Into+Light|Teko&display=swap"> 
@@ -21,8 +20,11 @@
     
     <link rel="shortcut icon" href="{% static 'images/chess.ico' %}" type="image/x-icon">
 </head>
-<body  onload="initialLoad();">
+<body onload="initialBoard();">
     {% block body %}
+    {% endblock %}
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    {% block scriptsBody %}
     {% endblock %}
 </body>
 </html>

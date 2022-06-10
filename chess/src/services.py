@@ -1,18 +1,18 @@
-from board import *
-from ia import *
+from chess.src.board import *
+from chess.src.ia import *
 
 global chess
 
 class Services:
 
     # create the new game and return the dictionary
-    def startGame():
+    def start_game():
         global chess
         chess = Board.initial()
         return chess.pieces
 
     # receive a string and will return a list of string with the possible moves
-    def legalMoves(piece):
+    def get_legal_moves(piece):
         global chess
         sequences = chess.getLegalSequences(piece)
         result = []
@@ -24,7 +24,7 @@ class Services:
 
     # receive a string to represent the piece and another to represent where it should go
     # output is the new dictionary
-    def executeMove(piece, final):
+    def execute_move(piece, final): # APAGAR: ids
         global chess
         move = "move " + piece + " " + final
         sequences = chess.getLegalSequences(piece)
@@ -62,7 +62,7 @@ class Services:
         sequence = alpha_beta(chess)
         if sequence:
             chess.execute(sequence)
-        return chess.pieces
+        return chess.pieces #tabuleiro
 
     # receive the team and return true if there is a possible move for the team
     def legalSequences(team):
@@ -70,7 +70,7 @@ class Services:
         movements = []
         for piece in chess.pieces:
             if chess.pieces[piece]['team'] == team:
-                movements.append(chess.getLegalSequences(piece))
+                movements.append(chess.geLegalSequences(piece))
 
         if movements:
             return True
