@@ -31,28 +31,29 @@ class Services:
         executed = False
         newType = ""
         promotion = False
-        if final[1] == "8":
-            if chess.pieces[piece]["type"] == "pawn" and chess.pieces[piece]["team"] == "white":
-                newType = input()
-                promotion = True
 
-        for i in range(len(sequences)):
+        if chess.pieces[piece]["team"] == "white":
+            if final[1] == "8":
+                if chess.pieces[piece]["type"] == "pawn":
+                    newType = input()
+                    promotion = True
 
-            if promotion:
+            for i in range(len(sequences)):
                 if move == sequences[i][0]:
-                    if newType == sequences[i][1].split()[3]:
+                    if promotion:
+                        if newType == sequences[i][1].split()[3]:
+                            for j in range(len(sequences[i])):
+                                chess.execute(sequences[i][j])
+                                executed = True
+                            if executed:
+                                break
+
+                    else:
                         for j in range(len(sequences[i])):
                             chess.execute(sequences[i][j])
                             executed = True
                         if executed:
                             break
-
-            else:
-                for j in range(len(sequences[i])):
-                    chess.execute(sequences[i][j])
-                    executed = True
-                if executed:
-                    break
 
         return chess.pieces
 
