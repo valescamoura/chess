@@ -10,6 +10,7 @@ class Services:
         global chess
         chess = Board.initial()
         return chess.pieces
+    print(start_game())
 
     # receive a string and will return a list of string with the possible moves
     def get_legal_moves(piece):
@@ -21,6 +22,7 @@ class Services:
             result.append(sequences[i][2])
 
         return result
+    print(get_legal_moves("a7"))
 
     # receive a string to represent the piece and another to represent where it should go
     # output is the new dictionary
@@ -93,9 +95,11 @@ class Services:
     def didPlayerWin():
         global chess
         return chess.isKingInCheckmate("black")
+    
+    print(didPlayerWin())
 
     def didIAWin():
         global chess
         return chess.isKingInCheckmate("white")
-
+    print(didIAWin())
 
