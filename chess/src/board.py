@@ -334,7 +334,7 @@ class Board:
         if not king:
             return False
 
-        print(f'king is a valid tile: {king}')
+        #print(f'king is a valid tile: {king}')
 
         # Pawn
         if team == 'black':
