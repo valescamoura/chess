@@ -75,6 +75,7 @@ body {
 
 .container-tutorial-content{
     margin-left: 50px;
+    margin-right: 50px;
     width: auto;
     height: 1000px;
 }
