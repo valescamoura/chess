@@ -212,7 +212,3 @@ class Services:
 
     def didIAWin(self):
         return self.chess.isKingInCheckmate("white")
-
-teste = Services()
-teste.chess.pieces = {'a7': {'team': 'white', 'type': 'pawn',   'moved': True}}
-print(teste.chess.getLegalSequences("a7"))
