@@ -1,5 +1,6 @@
 import unittest
 from chess.src.services import *
+from unittest.mock import *
 
 
 class TestService(unittest.TestCase):
@@ -23,6 +24,10 @@ class TestService(unittest.TestCase):
         self.assertEqual(teste.pawn, 16)
 
     def test_get_legal_moves(self):
+        with patch("chess.src.board.getLegalSequences") as patched_function:
+            teste = Services()
+            teste.get_legal_moves("a2")
+        patched_function.assert_called_with(['a3', "a4"])
         teste = Services()
 
         # tabuleiro inicial
@@ -37,12 +42,12 @@ class TestService(unittest.TestCase):
         self.assertEqual(teste.get_legal_moves("g1"), ["f3", "h3"])
         self.assertEqual(teste.get_legal_moves("h1"), [])
         self.assertEqual(teste.get_legal_moves("a8"), [])
-        self.assertEqual(teste.get_legal_moves("b8"), ["a6", "c6"])
+        self.assertEqual(teste.get_legal_moves("b8"), ["c6", "a6"])
         self.assertEqual(teste.get_legal_moves("c8"), [])
         self.assertEqual(teste.get_legal_moves("d8"), [])
         self.assertEqual(teste.get_legal_moves("e8"), [])
         self.assertEqual(teste.get_legal_moves("f8"), [])
-        self.assertEqual(teste.get_legal_moves("g8"), ["f6", "h6"])
+        self.assertEqual(teste.get_legal_moves("g8"), ["h6", "f6"])
         self.assertEqual(teste.get_legal_moves("h8"), [])
 
         # roque menor rei branco
@@ -55,9 +60,9 @@ class TestService(unittest.TestCase):
             'h1': {'team': 'white', 'type': 'rook', 'moved': False},
             "b8": {'team': 'black', 'type': 'king', 'moved': False}
         }
-        self.assertEqual(teste.get_legal_moves("b8"), ["b7", "c8", "c7"])
-        self.assertEqual(teste.get_legal_moves("e1"), ["d2", "e2", "f1", "f2", "g1"])
-        self.assertEqual(teste.get_legal_moves("h1"), ["h2", "h3", "h4", "h5", "h6", "h7", "h8", "f1", "g1"])
+        self.assertEqual(teste.get_legal_moves("b8"), ["c7", "c8", "b7"])
+        self.assertEqual(teste.get_legal_moves("e1"), ["d2", "f2", "e2", "f1", "g1"])
+        self.assertEqual(teste.get_legal_moves("h1"), ["g1", "f1",  "h2", "h3", "h4", "h5", "h6", "h7", "h8", "g1"])
 
         # roque maior rei branco
         teste.chess.pieces = {
@@ -69,26 +74,31 @@ class TestService(unittest.TestCase):
             "b8": {'team': 'black', 'type': 'king', 'moved': False}
         }
     
-    #def test_execute_move():
-    #    pass
+    def test_execute_move(self):
+        teste = Services()
+        teste.chess.pieces = {
+            'a7': {'team': 'white', 'type': 'pawn', 'moved': True},
+            'e1': {'team': 'white', 'type': 'king', 'moved': False},
+            "b8": {'team': 'black', 'type': 'king', 'moved': False}
+        }
 
     def test_legalSequences(self):
         teste = Services()
 
         teste.start_game()
-        self.assertEqual(teste.legalSequences("white"), True)
-        self.assertEqual(teste.legalSequences("black"), True)
+        self.assertTrue(teste.legalSequences("white"))
+        self.assertTrue(teste.legalSequences("black"))
 
-        # rei preto sem movimentação pela rainha branca, logo time branco sem movimentação
+        # rei preto sem movimentação pela rainha branca, logo time preto sem movimentação
         teste.chess.pieces = {
                               'a8': {'team': 'black', 'type': 'king',   'moved': True},
                               'c7': {'team': 'white', 'type': 'queen',   'moved': True},
                               'c4': {'team': 'white', 'type': 'king',   'moved': True}
                               }
-        self.assertEqual(teste.legalSequences("black"), False)
-        self.assertEqual(teste.legalSequences("white"), True)
+        self.assertFalse(teste.legalSequences("black"))
+        self.assertTrue(teste.legalSequences("white"))
 
-        # rei branco sem movimentação pela rainha preta, logo time preto sem movimentação
+        # rei branco sem movimentação pela rainha preta, logo time branco sem movimentação
         teste.chess.pieces = {
                               'a1': {'team': 'white', 'type': 'king',   'moved': True},
                               'c2': {'team': 'black', 'type': 'queen',   'moved': True},
