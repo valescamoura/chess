@@ -57,6 +57,12 @@ class Services:
                     promotion = True
 
             for i in range(len(sequences)):
+                if len(sequences[i]) > 1:
+                    if move == sequences[i][1]:
+                        for j in range(len(sequences[i])):
+                            self.chess.execute(sequences[i][j])
+                            executed = True
+                            self.moves = 0
                 if move == sequences[i][0]:
                     if promotion:
                         if newType == sequences[i][1].split()[3]:
