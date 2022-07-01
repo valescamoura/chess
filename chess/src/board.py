@@ -112,7 +112,8 @@ class Board:
                 character = ' '
                 piece = self.pieces.get(tile, None)
                 if piece is not None:
-                    character = piece['type'][0]
+                    letters = {'pawn': 'p', 'rook': 'r', 'knight': 'n', 'bishop': 'b', 'queen': 'q', 'king': 'k'}
+                    character = letters[piece['type']]
                     if piece['team'] == 'black':
                         character = character.lower()
                     else:
