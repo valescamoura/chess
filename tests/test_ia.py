@@ -54,8 +54,8 @@ class TestIA(unittest.TestCase):
         move = min_max(board,"white")
         move,points = move
 
-        self.assertEqual(move[0],'move e3 d4')
-        self.assertEqual(points,-30)
+        self.assertEqual(move[0][0],'move e3 d4')
+        self.assertEqual(points,-330)
 
         # check if the points are correct
         board.execute(move)
@@ -66,6 +66,11 @@ class TestIA(unittest.TestCase):
     def test_in_min_max(self):
         # test the auxiliary function implementing the min max algorithm with alpha-beta prunning
         board = Board.initial()
+
+        empty = in_min_max(board,0,-9999,9999)
+
+        # check if the return when depth == 0
+        self.assertEqual(empty, 0)
 
         board.pieces = {
             'f6': {'team': 'black', 'type': 'bishop', 'moved': True},
@@ -80,7 +85,7 @@ class TestIA(unittest.TestCase):
         points = in_min_max(board,2,-9999,9999)
 
         # check if the points are correct
-        self.assertEqual(points, 10)
+        self.assertEqual(points, 95)
 
    
     def test_alpha_beta(self):
@@ -97,7 +102,7 @@ class TestIA(unittest.TestCase):
             'e1': {'team': 'white', 'type': 'king',   'moved': False}
        }
 
-        move = alpha_beta(board)
+        move = alpha_beta(board)[0]
         piece = move[0].split()[1]
         piece_team = board.pieces[piece]["team"]
 
@@ -107,7 +112,7 @@ class TestIA(unittest.TestCase):
 
         # check
         board.execute(move)
-        self.assertEqual(board.points, 10)
+        self.assertEqual(board.points, 95)
 
 
 

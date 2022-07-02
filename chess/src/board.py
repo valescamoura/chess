@@ -1,7 +1,7 @@
 from multipledispatch import dispatch
 import copy
 import json
-
+from chess.src.score_tables import pieces_square_table, scores
 
 class Board:
     '''
@@ -214,8 +214,7 @@ class Board:
         swap <src> <dst>
         '''
         backup = self.deepcopy()
-        scores = {'pawn': 10, 'rook': 50, 'knight': 30, 'bishop': 30, 'queen': 90, 'king': 900}
-
+        
         try:
             if 'del' in command:
                 _, tile = command.split(' ')
@@ -225,10 +224,7 @@ class Board:
 
                 if tile in self.pieces:
                     # A piece gets deleted
-                    if self.pieces[tile]['team'] == 'black':
-                        self.points -= scores[self.pieces[tile]['type']]
-                    else:
-                        self.points += scores[self.pieces[tile]['type']]
+                    self.points -= self.getPoints(tile)
 
                     del self.pieces[tile]
 
@@ -246,16 +242,10 @@ class Board:
 
                 if tile in self.pieces:
                     # A piece gets overwritten
-                    if self.pieces[tile]['team'] == 'black':
-                        self.points -= scores[self.pieces[tile]['type']]
-                    else:
-                        self.points += scores[self.pieces[tile]['type']]
-
+                    self.points -= self.getPoints(tile)
+                    
                 self.pieces[tile] = {'team': team, 'type': type, 'moved': (moved.lower() == 'true')}
-                if self.pieces[tile]['team'] == 'black':
-                    self.points += scores[self.pieces[tile]['type']]
-                else:
-                    self.points -= scores[self.pieces[tile]['type']]
+                self.points += self.getPoints(tile)
 
             elif 'move' in command:
                 _, src, dst = command.split(' ')
@@ -266,13 +256,15 @@ class Board:
                 if dst not in Board.tiles:
                     raise Exception(f'Invalid chess tile: "{dst}"')
 
+                if self.pieces[src]['moved'] == True:
+                    self.points += self.getPoints(dst,src) - self.getPoints(src)
+                else:
+                    self.points += self.getPoints(dst,src,True)
+
                 if src in self.pieces:
                     if dst in self.pieces:
                         # A piece gets overwritten
-                        if self.pieces[dst]['team'] == 'black':
-                            self.points -= scores[self.pieces[dst]['type']]
-                        else:
-                            self.points += scores[self.pieces[dst]['type']]
+                        self.points -= self.getPoints(dst)
 
                     self.pieces[dst] = self.pieces[src]
                     self.pieces[dst]['moved'] = True
@@ -304,6 +296,29 @@ class Board:
         except Exception as e:
             print(f'Failed to parse command: "{e}"')
             self = backup
+
+    def getPoints(self, tile, src = None, only_table = False):
+        '''
+        Returns the points of the <tile>, calculated based on it's type and position.
+        '''
+        coords = Board.arrayNotation(tile)
+        if not src:
+           src = tile
+
+        if self.pieces[src]['team'] == 'black':
+            points = pieces_square_table[self.pieces[src]['type']][7 - coords[0]][coords[1]]
+
+            if not only_table:
+                points += scores[self.pieces[src]['type']]
+
+            return points
+        else:
+            points = pieces_square_table[self.pieces[src]['type']][coords[0]][coords[1]]
+
+            if not only_table:
+                points += scores[self.pieces[src]['type']]
+
+            return - points
 
     def getKingTile(self, team):
         '''
