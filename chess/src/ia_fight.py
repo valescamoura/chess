@@ -21,7 +21,7 @@ while not winner:
         else:
             white_can_move = False
 
-        if (points - chess.points) == 900 or chess.isBlackKingInCheckmate():
+        if (points - chess.points) == 9000 or chess.isBlackKingInCheckmate():
             winner = 'White' 
         points = chess.points
     
@@ -33,7 +33,7 @@ while not winner:
         else:
             black_can_move = False
 
-        if (chess.points - points) == 900 or chess.isWhiteKingInCheckmate():
+        if (chess.points - points) == 9000 or chess.isWhiteKingInCheckmate():
             winner = 'Black' 
         points = chess.points
 
