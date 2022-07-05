@@ -17,5 +17,6 @@ urlpatterns = [
     path('get_ai_move/', views.get_ai_move, name='get_ai_move'),
     path('ia_fight/', views.ia_fight, name='ia_fight'),
     path('get_ai_move_easy/', views.get_ai_move_easy, name='get_ai_move_easy'),
-    path('get_ai_move_hard/', views.get_ai_move_hard, name='get_ai_move_hard')
+    path('get_ai_move_hard/', views.get_ai_move_hard, name='get_ai_move_hard'),
+    path('get_is_game_over/', views.get_is_game_over, name='get_is_game_over')
 ]

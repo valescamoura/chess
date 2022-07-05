@@ -99,3 +99,21 @@ def get_ai_move_hard(request):
     
     response = {'new_board': new_board}
     return JsonResponse(response)
+
+def get_is_game_over(request):
+    is_game_over = False
+    winner = ''
+
+    if SERVICE.drawn():
+        winner = 'drawn'
+        is_game_over = True
+    elif SERVICE.didPlayerWin():
+        winner = 'player'
+        is_game_over = True
+    elif SERVICE.didIAWin():
+        winner = 'ia'
+        is_game_over = True
+
+    response = {'is_game_over': is_game_over, 'winner': winner}
+    print(response)
+    return JsonResponse(response)
