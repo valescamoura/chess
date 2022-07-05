@@ -43,7 +43,7 @@ def ia_fight(request):
     SERVICE = Services()
     board = SERVICE.start_game()
 
-    return render(request, 'chess/chess.html', {})
+    return render(request, 'chess/ia_fight.html', {})
 
 def levels(request):
     return render(request, 'chess/levels.html', {})

@@ -1,0 +1,94 @@
+{% extends 'chess/base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Chess</title>
+{% endblock %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/chess.css' %}">
+{% endblock %}
+
+{% block body %}
+<div class="fixIcon">
+    <a href="{% url 'chess:index' %}"><button class="menuIconOnPageGame"><img src="{% static 'images/menuIcon.png' %}" height ="20" width="20" /></button></a>
+</div>
+
+<div class="board"> 
+    <div class="board-house" id="a8"></div>
+    <div class="board-house" id="b8"></div>
+    <div class="board-house" id="c8"></div>	
+    <div class="board-house" id="d8"></div>
+    <div class="board-house" id="e8"></div>	
+    <div class="board-house" id="f8"></div>
+    <div class="board-house" id="g8"></div>	
+    <div class="board-house" id="h8"></div>
+
+    <div class="board-house" id="a7"></div>
+    <div class="board-house" id="b7"></div>
+    <div class="board-house" id="c7"></div>
+    <div class="board-house" id="d7"></div>
+    <div class="board-house" id="e7"></div>
+    <div class="board-house" id="f7"></div>
+    <div class="board-house" id="g7"></div>
+    <div class="board-house" id="h7"></div>
+
+    <div class="board-house" id="a6"></div>	
+    <div class="board-house" id="b6"></div>
+    <div class="board-house" id="c6"></div>	
+    <div class="board-house" id="d6"></div>
+    <div class="board-house" id="e6"></div>	
+    <div class="board-house" id="f6"></div>
+    <div class="board-house" id="g6"></div>	
+    <div class="board-house" id="h6"></div>
+
+    <div class="board-house" id="a5"></div>	
+    <div class="board-house" id="b5"></div>
+    <div class="board-house" id="c5"></div>	
+    <div class="board-house" id="d5"></div>
+    <div class="board-house" id="e5"></div>	
+    <div class="board-house" id="f5"></div>
+    <div class="board-house" id="g5"></div>	
+    <div class="board-house" id="h5"></div>
+
+    <div class="board-house" id="a4"></div>	
+    <div class="board-house" id="b4"></div>
+    <div class="board-house" id="c4"></div>	
+    <div class="board-house" id="d4"></div>
+    <div class="board-house" id="e4"></div>	
+    <div class="board-house" id="f4"></div>
+    <div class="board-house" id="g4"></div>	
+    <div class="board-house" id="h4"></div>
+
+    <div class="board-house" id="a3"></div>	
+    <div class="board-house" id="b3"></div>
+    <div class="board-house" id="c3"></div>	
+    <div class="board-house" id="d3"></div>
+    <div class="board-house" id="e3"></div>	
+    <div class="board-house" id="f3"></div>
+    <div class="board-house" id="g3"></div>	
+    <div class="board-house" id="h3"></div>
+
+    <div class="board-house" id="a2"></div>
+    <div class="board-house" id="b2"></div>
+    <div class="board-house" id="c2"></div>
+    <div class="board-house" id="d2"></div>
+    <div class="board-house" id="e2"></div>
+    <div class="board-house" id="f2"></div>
+    <div class="board-house" id="g2"></div>
+    <div class="board-house" id="h2"></div>
+
+    <div class="board-house" id="a1"></div>
+    <div class="board-house" id="b1"></div>
+    <div class="board-house" id="c1"></div>
+    <div class="board-house" id="d1"></div>
+    <div class="board-house" id="e1"></div>
+    <div class="board-house" id="f1"></div>
+    <div class="board-house" id="g1"></div>
+    <div class="board-house" id="h1"></div>
+</div>
+{% endblock %}
+
+{% block scriptsBody %}
+<script src="{% static 'js/ia-fight.js' %}"></script>
+{% endblock %}

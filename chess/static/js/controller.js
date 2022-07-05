@@ -174,37 +174,13 @@ function getIAMove() {
     }
 }
 
-function getIAMove_random() {
-    $.ajax({
-        url: '/get_ai_move_easy/',
-        type: 'GET',
-        success: function(response) {
-            new_board =  response['new_board'];
-            board = new_board;
-            drawBoard(new_board);
-            itsAITurn = false
-        }
-    });
-}
-
-function getIAMove_alphabeta() {
-    $.ajax({
-        url: '/get_ai_move_hard/',
-        type: 'GET',
-        success: function(response) {
-            new_board =  response['new_board'];
-            board = new_board;
-            drawBoard(new_board);
-        }
-    });
-}
 
 function activePawnPromotion() {
     const ids = ['rook', 'knight', 'bishop', 'queen'];
     for (let index = 0; index < ids.length; index++) {
         const id = ids[index];
         const boardHouse = document.getElementById(id);
-        boardHouse.style.backgroundColor = '#777676';
+        boardHouse.style.backgroundColor = '#9370db';
     }
 }
 
