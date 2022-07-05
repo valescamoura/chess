@@ -13,8 +13,8 @@
 <img class="size-image" src="{% static 'images/levels_title.png' %}" alt="Levels options">
 <div class="container-buttons-style">
     <div class="btn-group">
-        <a href="{% url 'chess:gamepage' %}"><button class="button-style"><h2>Fácil</h2></button></a>
-        <a href=""><button class="button-style"><h2>Difícil</h2></button></a>
+        <a href="{% url 'chess:gamepage_easy' %}"><button class="button-style"><h2>Fácil</h2></button></a>
+        <a href="{% url 'chess:gamepage_hard' %}"><button class="button-style"><h2>Difícil</h2></button></a>
     </div>    
 </div>
 {% endblock %}
