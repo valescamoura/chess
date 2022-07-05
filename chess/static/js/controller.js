@@ -19,24 +19,10 @@ var pieces = {
         'pawn': '&#9817'
     }
 }
+var legal_sequence = [];
 
-function callEasyGame(){
-    console.log('Implementação em andamento...')
-}
-
-function callHardGame(){
-    console.log('Implementação em andamento...')
-}
-
-function callPlay() {
-    alert('play!!!')
-    $.ajax({
-        url: '/levels/',
-        type: 'GET',
-        success: function (response) {
-            console.log(response);
-        }
-    });
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
 function initialBoard(){
@@ -101,12 +87,10 @@ function getLegalMoviments(boardHouse) {
         url: '/get_moviments/',
         type: 'GET',
         data: data,
-        // cache: false,
-        // processData: false,
-        // contentType: false,
         success: function(response) {
             const legal_moves =  response['legal_moves'];
             console.log('legal moves, id ', boardHouse, ' = ',legal_moves);
+            legal_sequence = legal_moves;
             for(let i = 0; i < legal_moves.length; i++) {
                 hightlight(legal_moves[i]);
             }
@@ -114,8 +98,8 @@ function getLegalMoviments(boardHouse) {
     });
 }
 
-function movePiece(oldPiece, newPiece) {
-    const data = {'old_piece': oldPiece, 'new_piece': newPiece};
+function movePiece(oldPiece, newPiece, type_of_piece) {
+    const data = {'old_piece': oldPiece, 'new_piece': newPiece, 'type_of_piece': type_of_piece};
     $.ajax({
         url: '/move_piece/',
         type: 'GET',
@@ -164,24 +148,57 @@ function getIAMove() {
     }
 }
 
-$('.board').on('click', '.board-house', function() {
+function getIAMove_random() {
+    $.ajax({
+        url: '/get_ai_move_easy/',
+        type: 'GET',
+        success: function(response) {
+            new_board =  response['new_board'];
+            board = new_board;
+            drawBoard(new_board);
+            itsAITurn = false
+        }
+    });
+}
+
+function getIAMove_alphabeta() {
+    $.ajax({
+        url: '/get_ai_move_hard/',
+        type: 'GET',
+        success: function(response) {
+            new_board =  response['new_board'];
+            board = new_board;
+            drawBoard(new_board);
+        }
+    });
+}
+
+$('.board').on('click', '.board-house', async function() {
     if (!itsAITurn) {
         cleanBoard();
         const clickedBoardHouseId = $(this).attr('id');
         const boardHouse = document.getElementById(clickedBoardHouseId)
         
+        // se tem peça na casa selecionada e ela é branca
         if(boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'white') {
             selected_piece = clickedBoardHouseId;
             hightlight(clickedBoardHouseId);
             getLegalMoviments(clickedBoardHouseId);
-        } else if(boardHouse.innerText === '' && selected_piece !== ''){
-            // const piece = pieces[board[selected_piece].team][board[selected_piece].type];
-            // boardHouse.innerHTML = piece + ';';
-            // document.getElementById(selected_piece).innerHTML = '';
-
-            movePiece(selected_piece, clickedBoardHouseId)
-            selected_piece = ''
-            itsAITurn = true
+        } else if(boardHouse.innerText === '' && selected_piece !== ''){ // se a casa selecionada está vazia e tem peça selecionada
+            movePiece(selected_piece, clickedBoardHouseId, '');
+            if (legal_sequence.includes(clickedBoardHouseId)) {
+                selected_piece = '';
+                itsAITurn = true;
+            }
+            await sleep(200);
+            getIAMove();
+        } else if (boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'black' && selected_piece !== '') {
+            movePiece(selected_piece, clickedBoardHouseId, '');
+            if (legal_sequence.includes(clickedBoardHouseId)) {
+                selected_piece = '';
+                itsAITurn = true;
+            }
+            await sleep(200);
             getIAMove();
         }
     }

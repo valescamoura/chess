@@ -2,14 +2,47 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from chess.src.services import Services 
 
+
+# Constants
+
+SERVICE = Services()
+LEVEL = 'easy'
+
 # Pages
 
 def index(request): 
     return render(request, 'chess/menu.html', {})
     
-def gamepage(request):
-    board = Services.start_game()
+def gamepage_easy(request):
+    global SERVICE
+    global LEVEL
+
+    SERVICE = Services()
+    board = SERVICE.start_game()
     print(board)
+    LEVEL = 'easy'
+
+    return render(request, 'chess/chess.html', {})
+
+def gamepage_hard(request):
+    global SERVICE
+    global LEVEL
+
+    SERVICE = Services()
+    board = SERVICE.start_game()
+    LEVEL = 'hard'
+
+    print(board)
+
+    return render(request, 'chess/chess.html', {})
+
+def ia_fight(request):
+    global SERVICE
+    global LEVEL
+
+    SERVICE = Services()
+    board = SERVICE.start_game()
+
     return render(request, 'chess/chess.html', {})
 
 def levels(request):
@@ -27,26 +60,42 @@ def victory(request):
 def defeat(request):
     return render(request, 'chess/defeat.html', {})
 
-# 
+# Requests
 
 def get_moviments(request):
     idBoardHouse = request.GET['id']
-    legal_moves = Services.get_legal_moves(idBoardHouse)
-
+    legal_moves = SERVICE.get_legal_moves(idBoardHouse)
+    print(legal_moves)
     response = {'legal_moves': legal_moves}
     return JsonResponse(response)
 
 def move_piece(request):
+    print(request.GET)
     old_piece = request.GET['old_piece']
     new_piece = request.GET['new_piece']
+    type_of_piece = request.GET['type_of_piece']
 
-    new_board = Services.execute_move(old_piece, new_piece)
+    print(old_piece, new_piece, type_of_piece)
+
+    new_board = SERVICE.execute_move(old_piece, new_piece, type_of_piece)
 
     response = {'new_board': new_board}
     return JsonResponse(response)
 
 def get_ai_move(request):
-    new_board = Services.IAMove()
+    if LEVEL == 'easy':
+        return get_ai_move_easy(request)
+    else:
+        return get_ai_move_hard(request)
+
+def get_ai_move_easy(request):
+    new_board = SERVICE.IAMove_facil()
+    
+    response = {'new_board': new_board}
+    return JsonResponse(response)
+
+def get_ai_move_hard(request):
+    new_board = SERVICE.IAMove_medio()
     
     response = {'new_board': new_board}
     return JsonResponse(response)
