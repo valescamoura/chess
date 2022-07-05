@@ -32,7 +32,6 @@ class TestSystem(unittest.TestCase):
         self.driver.find_element(By.CSS_SELECTOR, "a:nth-child(2) h2").click()
         self.assertEqual(self.driver.title, "Regras do jogo")
 
-    #TA FUNCIONANDO
     def test_routeToAbout(self):
         self.driver.get('https://chess-es2-20221.herokuapp.com/')
         self.driver.find_element(By.CSS_SELECTOR, "a:nth-child(3) > .button-style").click()
