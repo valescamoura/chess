@@ -1,10 +1,7 @@
 import re
 import unittest
 import json
-
 from chess.src.board import Board
-
-# python -m unittest tests/test_board.py
 
 
 class TestBoard(unittest.TestCase):
@@ -282,8 +279,7 @@ class TestBoard(unittest.TestCase):
         self.assertEqual(board.getCastling('e1'), [['move e1 c1', 'move a1 d1'], ['move e1 g1', 'move h1 f1']])
         self.assertEqual(board.getCastling('h1'), [['move e1 g1', 'move h1 f1']])
 
-    def test_getPoints(self):
-        pass
+
 
 
 if __name__ == '__main__':
