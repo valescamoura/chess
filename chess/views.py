@@ -89,7 +89,7 @@ def get_ai_move(request):
         return get_ai_move_hard(request)
 
 def get_ai_move_easy(request):
-    new_board = SERVICE.IAMove_facil()
+    new_board = SERVICE.IAMove_facil('white')
     
     response = {'new_board': new_board}
     return JsonResponse(response)
