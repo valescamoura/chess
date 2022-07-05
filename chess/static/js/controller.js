@@ -89,7 +89,7 @@ function getLegalMoviments(boardHouse) {
         data: data,
         success: function(response) {
             const legal_moves =  response['legal_moves'];
-            console.log('legal moves, id ', boardHouse, ' = ',legal_moves);
+            //console.log('legal moves, id ', boardHouse, ' = ',legal_moves);
             legal_sequence = legal_moves;
             for(let i = 0; i < legal_moves.length; i++) {
                 hightlight(legal_moves[i]);
@@ -199,7 +199,9 @@ $('.board').on('click', '.board-house', async function() {
                 itsAITurn = true;
             }
             await sleep(200);
+            console.log('Board antes da IA => ', board);
             getIAMove();
+            console.log('Board depois da IA => ', board);
         }
     }
 });
