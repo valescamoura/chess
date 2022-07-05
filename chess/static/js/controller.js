@@ -1,7 +1,7 @@
-var board = {'a8': {'team': 'black', 'type': 'rook', 'moved': false}, 'b8': {'team': 'black', 'type': 'knight', 'moved': false}, 'c8': {'team': 'black', 'type': 'bishop', 'moved': false}, 'd8': {'team': 'black', 'type': 'queen', 'moved': false}, 'e8': {'team': 'black', 'type': 'king', 'moved': false}, 'f8': {'team': 'black', 'type': 'bishop', 'moved': false}, 'g8': {'team': 'black', 'type': 'knight', 'moved': false}, 'h8': {'team': 'black', 'type': 'rook', 'moved': false}, 'a7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'b7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'c7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'd7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'e7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'f7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'g7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'h7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'a2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'b2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'c2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'd2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'e2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'f2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'g2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'h2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'a1': {'team': 'white', 'type': 'rook', 'moved': false}, 'b1': {'team': 'white', 'type': 'knight', 'moved': false}, 'c1': {'team': 'white', 'type': 'bishop', 'moved': false}, 'd1': {'team': 'white', 'type': 'queen', 'moved': false}, 'e1': {'team': 'white', 'type': 'king', 'moved': false}, 'f1': {'team': 'white', 'type': 'bishop', 'moved': false}, 'g1': {'team': 'white', 'type': 'knight', 'moved': false}, 'h1': {'team': 'white', 'type': 'rook', 'moved': false}}
-var itsAITurn = false
-var selected_piece = '';
-var pieces = {
+let board = {'a8': {'team': 'black', 'type': 'rook', 'moved': false}, 'b8': {'team': 'black', 'type': 'knight', 'moved': false}, 'c8': {'team': 'black', 'type': 'bishop', 'moved': false}, 'd8': {'team': 'black', 'type': 'queen', 'moved': false}, 'e8': {'team': 'black', 'type': 'king', 'moved': false}, 'f8': {'team': 'black', 'type': 'bishop', 'moved': false}, 'g8': {'team': 'black', 'type': 'knight', 'moved': false}, 'h8': {'team': 'black', 'type': 'rook', 'moved': false}, 'a7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'b7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'c7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'd7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'e7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'f7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'g7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'h7': {'team': 'black', 'type': 'pawn', 'moved': false}, 'a2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'b2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'c2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'd2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'e2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'f2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'g2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'h2': {'team': 'white', 'type': 'pawn', 'moved': false}, 'a1': {'team': 'white', 'type': 'rook', 'moved': false}, 'b1': {'team': 'white', 'type': 'knight', 'moved': false}, 'c1': {'team': 'white', 'type': 'bishop', 'moved': false}, 'd1': {'team': 'white', 'type': 'queen', 'moved': false}, 'e1': {'team': 'white', 'type': 'king', 'moved': false}, 'f1': {'team': 'white', 'type': 'bishop', 'moved': false}, 'g1': {'team': 'white', 'type': 'knight', 'moved': false}, 'h1': {'team': 'white', 'type': 'rook', 'moved': false}}
+let itsAITurn = false
+let selected_piece = '';
+let pieces = {
     'black': {
         'rook': '&#9820',
         'knight': '&#9822',
@@ -19,12 +19,12 @@ var pieces = {
         'pawn': '&#9817'
     }
 }
-var legal_sequence = [];
-var isPawnPromotion = false;
-var clickedBoardHouseIdPawnPromotion = '';
+let legal_sequence = [];
+let isPawnPromotion = false;
+let clickedBoardHouseIdPawnPromotion = '';
 
 async function sleep(milliseconds) {
-    return  await new Promise(resolve => setTimeout(resolve, milliseconds));
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
 
 function redirectToFinalPage(winner) {
