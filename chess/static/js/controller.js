@@ -35,7 +35,7 @@ function redirectToFinalPage(winner) {
     }
 }
 
-function isGameOver() {
+function functionIsGameOver(str) {
     $.ajax({
         url: '/get_is_game_over/',
         type: 'GET',
@@ -132,7 +132,7 @@ function movePiece(oldPiece, newPiece, type_of_piece) {
             new_board =  response['new_board'];
             board = new_board;
             drawBoard(new_board);
-            isGameOver()
+            functionIsGameOver('');
         }
     });
 }
@@ -168,7 +168,7 @@ function getIAMove() {
                 board = new_board;
                 drawBoard(new_board);
                 itsAITurn = false;
-                isGameOver();
+                functionIsGameOver('');
             }
         });
     }
