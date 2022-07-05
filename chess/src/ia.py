@@ -146,7 +146,7 @@ def alpha_beta(chess_board,team="black"):
       if(team == "black"):
         new_board = chess_board.deepcopy()
         new_board.execute(move)
-        oponent_move_points = in_min_max(new_board,5,alpha,beta,team="white")
+        oponent_move_points = in_min_max(new_board,1,alpha,beta,team="white")
         alpha = max(oponent_move_points,alpha)
         
         if oponent_move_points > min_max_value or final_move == []:
@@ -158,7 +158,7 @@ def alpha_beta(chess_board,team="black"):
       else:
         new_board = chess_board.deepcopy()
         new_board.execute(move)
-        oponent_move_points = in_min_max(new_board,5,alpha,beta,team="black")
+        oponent_move_points = in_min_max(new_board,1,alpha,beta,team="black")
         beta = min(oponent_move_points,beta)
         
         if oponent_move_points < min_max_value or final_move == []:
