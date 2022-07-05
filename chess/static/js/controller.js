@@ -162,7 +162,7 @@ function hightlight(idBoardHouse) {
 
 function getIAMove() {
     if(itsAITurn) {
-        $.ajax({
+        return $.ajax({
             url: '/get_ai_move/',
             type: 'GET',
             success: function(response) {
@@ -239,7 +239,10 @@ $('.board').on('click', '.board-house', async function() {
                 }
                 await sleep(300);
                 console.log('Board antes da IA => ', board);
-                getIAMove();
+                let iaMove = getIAMove();
+                await iaMove.done(() => {
+                    console.log('Board depois da IA => ', board);
+                })
                 console.log('Board depois da IA => ', board);
             } else if (boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'black' && selected_piece !== '') {
                 movePiece(selected_piece, clickedBoardHouseId, '');

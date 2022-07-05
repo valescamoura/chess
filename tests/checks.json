@@ -1,0 +1,1687 @@
+[
+    {
+        "name": "Anastasia's Mate",
+        "pieces": {
+            "e7": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h3": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Anderssen's Mate",
+        "pieces": {
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g7": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "f6": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Arabian Mate",
+        "pieces": {
+            "h8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h7": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "f6": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Back Rank Mate",
+        "pieces": {
+            "d8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "f2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "g2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "h2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Balestra Mate",
+        "pieces": {
+            "e8": {
+                "team": "black",
+                "type": "king",
+                "moved": false
+            },
+            "c6": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "f6": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Blackburne's Mate",
+        "pieces": {
+            "f8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h7": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "g5": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "b2": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Blind Swine Mate",
+        "pieces": {
+            "f8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "g7": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "h7": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Boden's Mate",
+        "pieces": {
+            "c8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "d8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "d7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "a6": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "f4": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "c1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Corner Mate",
+        "pieces": {
+            "h8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f7": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "c1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Corridor Mate",
+        "pieces": {
+            "c7": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "c4": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "b1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "d1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Diagonal Corridor Mate",
+        "pieces": {
+            "g8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": true
+            },
+            "h8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "e5": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Cozio's Mate (Dovetail Mate)",
+        "pieces": {
+            "g5": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "f4": {
+                "team": "black",
+                "type": "queen",
+                "moved": true
+            },
+            "g4": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h3": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g2": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Damiano's Mate",
+        "pieces": {
+            "f8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g6": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "David and Goliath Mate",
+        "pieces": {
+            "b6": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "f5": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "g5": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h5": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "h4": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "f3": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            },
+            "g3": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Epaulette Mate",
+        "pieces": {
+            "d8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "e8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "e6": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Fool's Mate",
+        "pieces": {
+            "a8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "b8": {
+                "team": "black",
+                "type": "knight",
+                "moved": false
+            },
+            "c8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": false
+            },
+            "d8": {
+                "team": "black",
+                "type": "queen",
+                "moved": false
+            },
+            "e8": {
+                "team": "black",
+                "type": "king",
+                "moved": false
+            },
+            "f8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": false
+            },
+            "g8": {
+                "team": "black",
+                "type": "knight",
+                "moved": false
+            },
+            "h8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "a7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "b7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "c7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "d7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "e7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "f6": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "g5": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "h5": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "e4": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "a2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "b2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "c2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "d2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "f2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "g2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "h2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "a1": {
+                "team": "white",
+                "type": "rook",
+                "moved": false
+            },
+            "b1": {
+                "team": "white",
+                "type": "knight",
+                "moved": false
+            },
+            "c1": {
+                "team": "white",
+                "type": "bishop",
+                "moved": false
+            },
+            "e1": {
+                "team": "white",
+                "type": "king",
+                "moved": false
+            },
+            "f1": {
+                "team": "white",
+                "type": "bishop",
+                "moved": false
+            },
+            "g1": {
+                "team": "white",
+                "type": "knight",
+                "moved": false
+            },
+            "h1": {
+                "team": "white",
+                "type": "rook",
+                "moved": false
+            }
+        }
+    },
+    {
+        "name": "Greco's Mate",
+        "pieces": {
+            "h8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "c4": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "c1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            },
+            "h1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "H-file Mate",
+        "pieces": {
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g7": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "f6": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Hook Mate",
+        "pieces": {
+            "h8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "g6": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "f5": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Kill Box Mate",
+        "pieces": {
+            "c8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "d8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "b6": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Lawnmower Mate",
+        "pieces": {
+            "a8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "h8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "b7": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Legal's Mate",
+        "pieces": {
+            "a8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "c6": {
+                "team": "black",
+                "type": "knight",
+                "moved": true
+            },
+            "d1": {
+                "team": "black",
+                "type": "bishop",
+                "moved": true
+            },
+            "d8": {
+                "team": "black",
+                "type": "queen",
+                "moved": false
+            },
+            "e8": {
+                "team": "black",
+                "type": "king",
+                "moved": false
+            },
+            "f8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": false
+            },
+            "g8": {
+                "team": "black",
+                "type": "knight",
+                "moved": false
+            },
+            "h8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "a7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "b7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "c7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "d6": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "a2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "b2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "c2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "d2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "e4": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "f2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "g2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "h3": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "a1": {
+                "team": "white",
+                "type": "rook",
+                "moved": false
+            },
+            "c3": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "c1": {
+                "team": "white",
+                "type": "bishop",
+                "moved": false
+            },
+            "e1": {
+                "team": "white",
+                "type": "king",
+                "moved": false
+            },
+            "f7": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "e5": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "h1": {
+                "team": "white",
+                "type": "rook",
+                "moved": false
+            }
+        }
+    },
+    {
+        "name": "Lolli's Mate",
+        "pieces": {
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "g7": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "f6": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "g6": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Max Lange's Mate",
+        "pieces": {
+            "g8": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "f7": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h6": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Mayet's Mate",
+        "pieces": {
+            "d8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "e8": {
+                "team": "black",
+                "type": "king",
+                "moved": false
+            },
+            "e7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "f7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "a5": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Morphy's Mate",
+        "pieces": {
+            "h8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "d4": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "c1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Opera Mate",
+        "pieces": {
+            "b8": {
+                "team": "black",
+                "type": "knight",
+                "moved": false
+            },
+            "d8": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "e8": {
+                "team": "black",
+                "type": "king",
+                "moved": false
+            },
+            "f8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": false
+            },
+            "h8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "a7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "f7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "e6": {
+                "team": "black",
+                "type": "queen",
+                "moved": true
+            },
+            "e5": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "g5": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "e4": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "a2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "b2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "c2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "f2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "g2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "h2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "c1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            },
+            "d1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Pillsbury's Mate",
+        "pieces": {
+            "f8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "c3": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "c1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Railroad Mate",
+        "pieces": {
+            "g7": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "h7": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "f5": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Reti's Mate",
+        "pieces": {
+            "a8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "b8": {
+                "team": "black",
+                "type": "knight",
+                "moved": false
+            },
+            "c8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": false
+            },
+            "d8": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "a7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "b7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "c7": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "c6": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "f2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "g2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "h2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "d1": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Scholar's Mate",
+        "pieces": {
+            "a8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "c6": {
+                "team": "black",
+                "type": "knight",
+                "moved": true
+            },
+            "c8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": false
+            },
+            "d8": {
+                "team": "black",
+                "type": "queen",
+                "moved": false
+            },
+            "e8": {
+                "team": "black",
+                "type": "king",
+                "moved": false
+            },
+            "f8": {
+                "team": "black",
+                "type": "bishop",
+                "moved": false
+            },
+            "f6": {
+                "team": "black",
+                "type": "knight",
+                "moved": true
+            },
+            "h8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "a7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "b7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "c7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "d7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "e5": {
+                "team": "black",
+                "type": "pawn",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "a2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "b2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "c2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "d2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "e4": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "f2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "g2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "h2": {
+                "team": "white",
+                "type": "pawn",
+                "moved": false
+            },
+            "a1": {
+                "team": "white",
+                "type": "rook",
+                "moved": false
+            },
+            "b1": {
+                "team": "white",
+                "type": "knight",
+                "moved": false
+            },
+            "c1": {
+                "team": "white",
+                "type": "bishop",
+                "moved": false
+            },
+            "f7": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "e1": {
+                "team": "white",
+                "type": "king",
+                "moved": false
+            },
+            "c4": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "knight",
+                "moved": false
+            },
+            "h1": {
+                "team": "white",
+                "type": "rook",
+                "moved": false
+            }
+        }
+    },
+    {
+        "name": "Smothered Mate",
+        "pieces": {
+            "g8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "h8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f7": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Smothered Mate Alt.",
+        "pieces": {
+            "a8": {
+                "team": "black",
+                "type": "rook",
+                "moved": false
+            },
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h6": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "c4": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Suffocation Mate",
+        "pieces": {
+            "f8": {
+                "team": "black",
+                "type": "rook",
+                "moved": true
+            },
+            "g8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "e7": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "f7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "b2": {
+                "team": "white",
+                "type": "bishop",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Swallow's Tail Mate (Gueridon Mate)",
+        "pieces": {
+            "f7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "h7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "g6": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "g5": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "g4": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Triangle Mate",
+        "pieces": {
+            "g7": {
+                "team": "black",
+                "type": "pawn",
+                "moved": false
+            },
+            "g6": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f5": {
+                "team": "white",
+                "type": "queen",
+                "moved": true
+            },
+            "h5": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    },
+    {
+        "name": "Vukovic Mate",
+        "pieces": {
+            "f8": {
+                "team": "black",
+                "type": "king",
+                "moved": true
+            },
+            "f7": {
+                "team": "white",
+                "type": "rook",
+                "moved": true
+            },
+            "e6": {
+                "team": "white",
+                "type": "pawn",
+                "moved": true
+            },
+            "f6": {
+                "team": "white",
+                "type": "knight",
+                "moved": true
+            },
+            "g1": {
+                "team": "white",
+                "type": "king",
+                "moved": true
+            }
+        }
+    }
+]
