@@ -191,7 +191,9 @@ $('.board').on('click', '.board-house', async function() {
                 itsAITurn = true;
             }
             await sleep(200);
+            console.log('Board antes da IA => ', board);
             getIAMove();
+            console.log('Board depois da IA => ', board);
         } else if (boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'black' && selected_piece !== '') {
             movePiece(selected_piece, clickedBoardHouseId, '');
             if (legal_sequence.includes(clickedBoardHouseId)) {
