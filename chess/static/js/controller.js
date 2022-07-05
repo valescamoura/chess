@@ -124,7 +124,7 @@ function getLegalMoviments(boardHouse) {
 
 function movePiece(oldPiece, newPiece, type_of_piece) {
     const data = {'old_piece': oldPiece, 'new_piece': newPiece, 'type_of_piece': type_of_piece};
-    $.ajax({
+    return $.ajax({
         url: '/move_piece/',
         type: 'GET',
         data: data,
@@ -198,7 +198,10 @@ $('.board2').on('click', '.pawn-promotion', async function() {
     if(isPawnPromotion && clickedBoardHouseIdPawnPromotion !== '') {
         const typeOfPiece = $(this).attr('id');
 
-        movePiece(selected_piece, clickedBoardHouseIdPawnPromotion, typeOfPiece);
+        let moved = movePiece(selected_piece, clickedBoardHouseIdPawnPromotion, typeOfPiece);
+        await moved.done(() =>{
+            console.log("moved");
+        });
         
         selected_piece = '';
         itsAITurn = true;
@@ -232,7 +235,11 @@ $('.board').on('click', '.board-house', async function() {
                     activePawnPromotion();
                 }
             } else if(boardHouse.innerText === '' && selected_piece !== ''){ // se a casa selecionada está vazia e tem peça selecionada
-                movePiece(selected_piece, clickedBoardHouseId, '');
+                let moved = movePiece(selected_piece, clickedBoardHouseId, '');
+                await moved.done(() =>{
+                    console.log("moved");
+                });
+
                 if (legal_sequence.includes(clickedBoardHouseId)) {
                     selected_piece = '';
                     itsAITurn = true;
@@ -245,7 +252,10 @@ $('.board').on('click', '.board-house', async function() {
                 })
                 console.log('Board depois da IA => ', board);
             } else if (boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'black' && selected_piece !== '') {
-                movePiece(selected_piece, clickedBoardHouseId, '');
+                let moved = movePiece(selected_piece, clickedBoardHouseId, '');
+                await moved.done(() =>{
+                    console.log("moved");
+                });
                 if (legal_sequence.includes(clickedBoardHouseId)) {
                     selected_piece = '';
                     itsAITurn = true;
