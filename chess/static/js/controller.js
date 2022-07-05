@@ -20,9 +20,33 @@ var pieces = {
     }
 }
 var legal_sequence = [];
+var isPawnPromotion = false;
+var clickedBoardHouseIdPawnPromotion = '';
 
 function sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+function redirectToFinalPage(winner) {
+    if (winner === 'drawn' || winner === 'ia') {
+        window.location.href = window.location.origin+"/defeat/";
+    } else if(winner === 'player') {
+        window.location.href = window.location.origin+"/victory/";
+    }
+}
+
+function functionIsGameOver(str) {
+    $.ajax({
+        url: '/get_is_game_over/',
+        type: 'GET',
+        success: function(response) {
+            isGameOver =  response['is_game_over'];
+            if (isGameOver) {
+                console.log(isGameOver)
+                redirectToFinalPage(response['winner']);
+            }
+        }
+    });
 }
 
 function initialBoard(){
@@ -106,8 +130,9 @@ function movePiece(oldPiece, newPiece, type_of_piece) {
         data: data,
         success: function(response) {
             new_board =  response['new_board'];
-            board = new_board
-            drawBoard(new_board)
+            board = new_board;
+            drawBoard(new_board);
+            functionIsGameOver('');
         }
     });
 }
@@ -142,36 +167,50 @@ function getIAMove() {
                 new_board =  response['new_board'];
                 board = new_board;
                 drawBoard(new_board);
-                itsAITurn = false
+                itsAITurn = false;
+                functionIsGameOver('');
             }
         });
     }
 }
 
-function getIAMove_random() {
-    $.ajax({
-        url: '/get_ai_move_easy/',
-        type: 'GET',
-        success: function(response) {
-            new_board =  response['new_board'];
-            board = new_board;
-            drawBoard(new_board);
-            itsAITurn = false
-        }
-    });
+
+function activePawnPromotion() {
+    const ids = ['rook', 'knight', 'bishop', 'queen'];
+    for (let index = 0; index < ids.length; index++) {
+        const id = ids[index];
+        const boardHouse = document.getElementById(id);
+        boardHouse.style.backgroundColor = '#9370db';
+    }
 }
 
-function getIAMove_alphabeta() {
-    $.ajax({
-        url: '/get_ai_move_hard/',
-        type: 'GET',
-        success: function(response) {
-            new_board =  response['new_board'];
-            board = new_board;
-            drawBoard(new_board);
-        }
-    });
+function disablePawnPromotion() {
+    const ids = ['rook', 'knight', 'bishop', 'queen'];
+    for (let index = 0; index < ids.length; index++) {
+        const id = ids[index];
+        const boardHouse = document.getElementById(id);
+        boardHouse.style.backgroundColor = '#e2dddd';
+    }
 }
+
+$('.board2').on('click', '.pawn-promotion', async function() {
+    if(isPawnPromotion && clickedBoardHouseIdPawnPromotion !== '') {
+        const typeOfPiece = $(this).attr('id');
+
+        movePiece(selected_piece, clickedBoardHouseIdPawnPromotion, typeOfPiece);
+        
+        selected_piece = '';
+        itsAITurn = true;
+        isPawnPromotion = false;
+        disablePawnPromotion();
+        clickedBoardHouseIdPawnPromotion = '';
+        
+        await sleep(300);
+        console.log('Board antes da IA => ', board);
+        getIAMove();
+        console.log('Board depois da IA => ', board);
+    }
+});
 
 $('.board').on('click', '.board-house', async function() {
     if (!itsAITurn) {
@@ -179,31 +218,39 @@ $('.board').on('click', '.board-house', async function() {
         const clickedBoardHouseId = $(this).attr('id');
         const boardHouse = document.getElementById(clickedBoardHouseId)
         
-        // se tem peça na casa selecionada e ela é branca
-        if(boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'white') {
-            selected_piece = clickedBoardHouseId;
-            hightlight(clickedBoardHouseId);
-            getLegalMoviments(clickedBoardHouseId);
-        } else if(boardHouse.innerText === '' && selected_piece !== ''){ // se a casa selecionada está vazia e tem peça selecionada
-            movePiece(selected_piece, clickedBoardHouseId, '');
-            if (legal_sequence.includes(clickedBoardHouseId)) {
-                selected_piece = '';
-                itsAITurn = true;
+        if (!isPawnPromotion) {
+            // se tem peça na casa selecionada e ela é branca
+            if(boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'white') {
+                selected_piece = clickedBoardHouseId;
+                hightlight(clickedBoardHouseId);
+                getLegalMoviments(clickedBoardHouseId);
+            } else if (board[selected_piece].type === 'pawn' && clickedBoardHouseId.includes('8')) {
+                if (legal_sequence.includes(clickedBoardHouseId)) {
+                    clickedBoardHouseIdPawnPromotion = clickedBoardHouseId;
+                    isPawnPromotion = true;
+                    activePawnPromotion();
+                }
+            } else if(boardHouse.innerText === '' && selected_piece !== ''){ // se a casa selecionada está vazia e tem peça selecionada
+                movePiece(selected_piece, clickedBoardHouseId, '');
+                if (legal_sequence.includes(clickedBoardHouseId)) {
+                    selected_piece = '';
+                    itsAITurn = true;
+                }
+                await sleep(300);
+                console.log('Board antes da IA => ', board);
+                getIAMove();
+                console.log('Board depois da IA => ', board);
+            } else if (boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'black' && selected_piece !== '') {
+                movePiece(selected_piece, clickedBoardHouseId, '');
+                if (legal_sequence.includes(clickedBoardHouseId)) {
+                    selected_piece = '';
+                    itsAITurn = true;
+                }
+                await sleep(300);
+                console.log('Board antes da IA => ', board);
+                getIAMove();
+                console.log('Board depois da IA => ', board);
             }
-            await sleep(200);
-            console.log('Board antes da IA => ', board);
-            getIAMove();
-            console.log('Board depois da IA => ', board);
-        } else if (boardHouse.innerText !== '' && board[clickedBoardHouseId].team === 'black' && selected_piece !== '') {
-            movePiece(selected_piece, clickedBoardHouseId, '');
-            if (legal_sequence.includes(clickedBoardHouseId)) {
-                selected_piece = '';
-                itsAITurn = true;
-            }
-            await sleep(200);
-            console.log('Board antes da IA => ', board);
-            getIAMove();
-            console.log('Board depois da IA => ', board);
-        }
+        }   
     }
 });
