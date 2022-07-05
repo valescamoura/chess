@@ -22,6 +22,23 @@ _Execute os comandos a partir do diretório base._
 
 4. Inicie o servidor: ``python manage.py runserver``. O serviço é acessado por padrão através da url http://127.0.0.1:8000/.
 
+## Testes
+
+1. Comando para rodar todos os testes:
+    ``python -m unittest discover -s tests`` 
+2. Comando para rodar um teste em específico:
+    ``python -m unittest tests/nomeDoArquivoDeTeste.py`` 
+
+## Cobertura dos Testes
+1. Instale o coverage.py
+    ``pip install coverage``
+2. Comando para rodar o testes de cobertura 
+    ``coverage run -m unittest discover``
+3. Use para relatar os resultados
+    ``coverage report -m``
+4. Para uma apresentação melhor, use este comando para obter listagens HTML anotadas detalhando as linhas perdidas:
+    ``coverage html``
+
 ## Guia do desenvolvedor
 
 1. Estamos utilizando uma lógica [Trunk-based development](https://www.atlassian.com/br/continuous-delivery/continuous-integration/trunk-based-development).

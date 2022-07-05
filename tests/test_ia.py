@@ -115,4 +115,7 @@ class TestIA(unittest.TestCase):
         self.assertEqual(board.points, 95)
 
 
+if __name__ == '__main__':
+    unittest.main()
+   
 
