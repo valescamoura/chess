@@ -80,7 +80,7 @@ def move_piece(request):
     new_board = SERVICE.execute_move(old_piece, new_piece, type_of_piece)
 
     response = {'new_board': new_board}
-    time.sleep(0.5)
+    ##time.sleep(0.5)
     return JsonResponse(response)
 
 def get_ai_move(request):
@@ -93,14 +93,14 @@ def get_ai_move_easy(request):
     new_board = SERVICE.IAMove_facil()
     
     response = {'new_board': new_board}
-    time.sleep(0.5)
+    ##time.sleep(0.5)
     return JsonResponse(response) 
 
 def get_ai_move_easy2(request):
     new_board = SERVICE.IAMove_facil('white')
     
     response = {'new_board': new_board}
-    time.sleep(0.5)
+    ##time.sleep(0.5)
     return JsonResponse(response)
 
 def get_ai_move_hard(request):
@@ -108,7 +108,7 @@ def get_ai_move_hard(request):
     
     response = {'new_board': new_board}
 
-    time.sleep(0.5)
+    ##time.sleep(0.5)
     return JsonResponse(response)
 
 def get_is_game_over(request):
