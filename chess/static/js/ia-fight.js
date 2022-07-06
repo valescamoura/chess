@@ -18,6 +18,7 @@ var pieces = {
         'pawn': '&#9817'
     }
 }
+let winner = null;
 
 function initialBoard(){
     document.getElementById('a8').innerHTML = '&#9820;';
@@ -79,7 +80,7 @@ function drawBoard(new_board) {
 }
 
 function getIAMove_random() {
-    $.ajax({
+    return $.ajax({
         url: '/get_ai_move_easy/',
         type: 'GET',
         success: function(response) {
@@ -92,7 +93,7 @@ function getIAMove_random() {
 }
 
 function getIAMove_alphabeta() {
-    $.ajax({
+    return $.ajax({
         url: '/get_ai_move_hard/',
         type: 'GET',
         success: function(response) {
@@ -103,9 +104,30 @@ function getIAMove_alphabeta() {
     });
 }
 
-console.log('ia fight');
-while(true) {
-    getIAMove_alphabeta();
-    await sleep(300);
-    getIAMove_random();
+async function ia_fight() {
+    let random = getIAMove_random();
+    await random.done(() => console.log('random'));
+    let alphaBeta = getIAMove_alphabeta();
+    await alphaBeta.done(() => console.log('alphaBeta'));
+} 
+
+function isGameOver() {
+    $.ajax({
+        url: '/get_is_game_over/',
+        type: 'GET',
+        success: function(response) {
+            const _isGameOver =  response['is_game_over'];
+            if (_isGameOver) {
+                winner = response['winner'];
+            }
+        }
+    });
+}
+
+function start_game() {
+    console.log('ia fight');
+    while(!winner) {
+        ia_fight();
+        winner = isGameOver();
+    }
 }

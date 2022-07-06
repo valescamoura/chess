@@ -141,8 +141,8 @@ class Services:
         self.pawn = pawn
         return self.chess.pieces
 
-    def IAMove_facil(self):
-        sequence = rand(self.chess)
+    def IAMove_facil(self, team = 'black'):
+        sequence = rand(self.chess, team)
         if sequence:
             self.chess.execute(sequence)
 
