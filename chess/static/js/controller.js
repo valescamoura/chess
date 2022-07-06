@@ -209,7 +209,7 @@ $('.board2').on('click', '.pawn-promotion', async function() {
         disablePawnPromotion();
         clickedBoardHouseIdPawnPromotion = '';
         
-        await sleep(300);
+        await sleep(10000);
         console.log('Board antes da IA => ', board);
         getIAMove();
         console.log('Board depois da IA => ', board);
@@ -244,7 +244,7 @@ $('.board').on('click', '.board-house', async function() {
                     selected_piece = '';
                     itsAITurn = true;
                 }
-                await sleep(300);
+                await sleep(10000);
                 console.log('Board antes da IA => ', board);
                 let iaMove = getIAMove();
                 await iaMove.done(() => {
@@ -260,7 +260,7 @@ $('.board').on('click', '.board-house', async function() {
                     selected_piece = '';
                     itsAITurn = true;
                 }
-                await sleep(300);
+                await sleep(5000);
                 console.log('Board antes da IA => ', board);
                 getIAMove();
                 console.log('Board depois da IA => ', board);
