@@ -30,4 +30,5 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+        python -m unittest discover -s tests
     
