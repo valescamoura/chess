@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from chess.src.services import Services 
 import time
+import json
 
 # Constants
 
@@ -63,14 +64,19 @@ def defeat(request):
 # Requests
 
 def get_moviments(request):
+    print('REQUEST: ', json.loads(request.GET['pieces']))
+    SERVICE.set_board(json.loads(request.GET['pieces']), request.GET['points'], json.loads(request.GET['record']))
     idBoardHouse = request.GET['id']
     legal_moves = SERVICE.get_legal_moves(idBoardHouse)
     print(legal_moves)
-    response = {'legal_moves': legal_moves}
+
+    pieces, points, record = SERVICE.get_board()
+    response = {'legal_moves': legal_moves, 'pieces': pieces, 'points': points, 'record': record}
     return JsonResponse(response)
 
 def move_piece(request):
-    print(request.GET)
+    print('REQUEST: ', json.loads(request.GET['pieces']))
+    SERVICE.set_board(json.loads(request.GET['pieces']), request.GET['points'], json.loads(request.GET['record']))
     old_piece = request.GET['old_piece']
     new_piece = request.GET['new_piece']
     type_of_piece = request.GET['type_of_piece']
@@ -79,7 +85,8 @@ def move_piece(request):
 
     new_board = SERVICE.execute_move(old_piece, new_piece, type_of_piece)
 
-    response = {'new_board': new_board}
+    pieces, points, record = SERVICE.get_board()
+    response = {'new_board': new_board, 'pieces': pieces, 'points': points, 'record': record}
     ##time.sleep(0.5)
     return JsonResponse(response)
 
@@ -90,28 +97,34 @@ def get_ai_move(request):
         return get_ai_move_hard(request)
 
 def get_ai_move_easy(request):
+    SERVICE.set_board(json.loads(request.GET['pieces']), request.GET['points'], json.loads(request.GET['record']))
     new_board = SERVICE.IAMove_facil()
     
-    response = {'new_board': new_board}
+    pieces, points, record = SERVICE.get_board()
+    response = {'new_board': new_board, 'pieces': pieces, 'points': points, 'record': record}
     ##time.sleep(0.5)
     return JsonResponse(response) 
 
 def get_ai_move_easy2(request):
+    SERVICE.set_board(json.loads(request.GET['pieces']), request.GET['points'], json.loads(request.GET['record']))
     new_board = SERVICE.IAMove_facil('white')
     
-    response = {'new_board': new_board}
+    pieces, points, record = SERVICE.get_board()
+    response = {'new_board': new_board, 'pieces': pieces, 'points': points, 'record': record}
     ##time.sleep(0.5)
     return JsonResponse(response)
 
 def get_ai_move_hard(request):
+    SERVICE.set_board(json.loads(request.GET['pieces']), request.GET['points'], json.loads(request.GET['record']))
     new_board = SERVICE.IAMove_medio()
     
-    response = {'new_board': new_board}
-
+    pieces, points, record = SERVICE.get_board()
+    response = {'new_board': new_board, 'pieces': pieces, 'points': points, 'record': record}
     ##time.sleep(0.5)
     return JsonResponse(response)
 
 def get_is_game_over(request):
+    SERVICE.set_board(json.loads(request.GET['pieces']), request.GET['points'], json.loads(request.GET['record']))
     is_game_over = False
     winner = ''
 

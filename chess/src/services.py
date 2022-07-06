@@ -26,6 +26,14 @@ class Services:
         self.pawn = 16
         return self.chess.pieces
 
+    def set_board(self, pieces, points, record):
+        self.chess.pieces = pieces
+        self.chess.points = int(points)
+        self.chess.record = record
+
+    def get_board(self):
+        return self.chess.pieces, self.chess.points, self.chess.record
+
     # receive a string and will return a list of string with the possible moves
     def get_legal_moves(self, piece):
         sequences = self.chess.getLegalSequences(piece)
@@ -39,7 +47,10 @@ class Services:
     # receive a string to represent the piece and another to represent where it should go
     # output is the new dictionary
     def execute_move(self, piece, final, newType):
+        print(type(piece), type(final))
+        print(type(self.chess.points))
         move = "move " + piece + " " + final
+        print(move)
         sequences = self.chess.getLegalSequences(piece)
         executed = False
 
