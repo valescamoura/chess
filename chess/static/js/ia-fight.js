@@ -169,10 +169,9 @@ $('.board').on('click', '.board-house', async function() {
     if (!clicked) {
         clicked = true
         console.log("ia fight");
-        //while(!isGameOver){
-            await fight();
-            //await ia_fight();
-        //}
+        while(!isGameOver){
+            await ia_fight();
+        }
     }
 });
 
