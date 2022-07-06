@@ -23,6 +23,9 @@ let legal_sequence = [];
 let isPawnPromotion = false;
 let clickedBoardHouseIdPawnPromotion = '';
 
+let points = 0
+let record = []
+
 async function sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
@@ -36,9 +39,11 @@ function redirectToFinalPage(winner) {
 }
 
 function functionIsGameOver(str) {
+    const data = {'pieces': JSON.stringify(board), 'points': points, 'record': JSON.stringify(record)};
     $.ajax({
         url: '/get_is_game_over/',
         type: 'GET',
+        data: data,
         success: function(response) {
             const isGameOver =  response['is_game_over'];
             if (isGameOver) {
@@ -106,7 +111,7 @@ function cleanBoard(){
 }
 
 function getLegalMoviments(boardHouse) {
-    const data = {'id': boardHouse};
+    const data = {'id': boardHouse, 'pieces': JSON.stringify(board), 'points': points, 'record': JSON.stringify(record)};
     $.ajax({
         url: '/get_moviments/',
         type: 'GET',
@@ -123,13 +128,17 @@ function getLegalMoviments(boardHouse) {
 }
 
 function movePiece(oldPiece, newPiece, type_of_piece) {
-    const data = {'old_piece': oldPiece, 'new_piece': newPiece, 'type_of_piece': type_of_piece};
+    const data = {'old_piece': oldPiece, 'new_piece': newPiece, 'type_of_piece': type_of_piece,
+    'pieces': JSON.stringify(board), 'points': points, 'record': JSON.stringify(record)
+    };
     return $.ajax({
         url: '/move_piece/',
         type: 'GET',
         data: data,
         success: function(response) {
             new_board =  response['new_board'];
+            points = response['points'];
+            record = response['record'];
             board = new_board;
             const ok = drawBoard(new_board);
             functionIsGameOver('');
@@ -161,12 +170,16 @@ function hightlight(idBoardHouse) {
 }
 
 function getIAMove() {
+    const data = {'pieces': JSON.stringify(board), 'points': points, 'record': JSON.stringify(record)};
     if(itsAITurn) {
         return $.ajax({
             url: '/get_ai_move/',
             type: 'GET',
+            data: data,
             success: function(response) {
                 new_board =  response['new_board'];
+                points = response['points'];
+                record = response['record'];
                 board = new_board;
                 drawBoard(new_board);
                 itsAITurn = false;
@@ -209,7 +222,7 @@ $('.board2').on('click', '.pawn-promotion', async function() {
         disablePawnPromotion();
         clickedBoardHouseIdPawnPromotion = '';
         
-        await sleep(10000);
+        await sleep(500);
         console.log('Board antes da IA => ', board);
         getIAMove();
         console.log('Board depois da IA => ', board);
@@ -244,7 +257,7 @@ $('.board').on('click', '.board-house', async function() {
                     selected_piece = '';
                     itsAITurn = true;
                 }
-                await sleep(10000);
+                await sleep(500);
                 console.log('Board antes da IA => ', board);
                 let iaMove = getIAMove();
                 await iaMove.done(() => {
