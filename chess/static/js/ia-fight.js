@@ -126,8 +126,10 @@ function isGameOver() {
 
 function start_game() {
     console.log('ia fight');
-    while(!winner) {
-        ia_fight();
-        winner = isGameOver();
-    }
+    
+    ia_fight();
+    winner = isGameOver();
+    
 }
+
+
