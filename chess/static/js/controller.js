@@ -196,7 +196,7 @@ function activePawnPromotion() {
         const boardHouse = document.getElementById(id);
         boardHouse.style.backgroundColor = '#9370db';
     }
-    alert('Escolha uma peça:');
+    //alert('Escolha uma peça:');
 }
 
 function disablePawnPromotion() {
